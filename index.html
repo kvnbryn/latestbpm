@@ -351,22 +351,28 @@
     <div class="w-16 h-16 border-4 border-silversand border-t-army rounded-full animate-spin"></div>
 </div>
 
-    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 transition-all duration-300 shadow-sm" id="navbar">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#home" class="flex items-center space-x-2 group">
-                <img src="foto/logo.png" alt="Logo BPM FKM" class="h-10 w-auto group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/40x40/eeeeee/cccccc?text=LOGO';">
-                <span class="text-xl font-display font-semibold text-army group-hover:text-army-dark transition-colors">BPM FKM</span>
-            </a>
-            <div class="hidden md:flex space-x-8">
-    <a href="#home" class="nav-link active">Beranda</a>
-    <a href="#about" class="nav-link">Tentang</a>
-    <a href="#structure" class="nav-link">Struktur</a>
-    <a href="#functions" class="nav-link">Fungsi</a>
-    <a href="#gallery" class="nav-link">Galeri</a>
-    <a href="#aspirasi" class="nav-link">Aspirasi</a>
-    <a href="#contact" class="nav-link">Kontak</a>
-</div>
-            <div class="md:hidden">
+<nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 transition-all duration-300 shadow-sm" id="navbar">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="#home" class="flex items-center space-x-2 group">
+            <img src="foto/logo.png" alt="Logo BPM FKM" class="h-10 w-auto group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/40x40/eeeeee/cccccc?text=LOGO';">
+            <span class="text-xl font-display font-semibold text-army group-hover:text-army-dark transition-colors">BPM FKM</span>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="nav-link active">Beranda</a>
+            <a href="#about" class="nav-link">Tentang</a>
+            <a href="#structure" class="nav-link">Struktur</a>
+            <a href="#functions" class="nav-link">Fungsi</a>
+            <a href="#gallery" class="nav-link">Galeri</a>
+            <a href="#aspirasi" class="nav-link">Aspirasi</a>
+            <a href="#contact" class="nav-link">Kontak</a>
+        </div>
+
+        <div class="flex items-center">
+            <button id="openPernyataanModal" aria-label="Lihat Pernyataan Resmi" class="text-army hover:text-army-dark transition-colors duration-300 p-2 rounded-full hover:bg-gray-100">
+                <i class="fas fa-bell text-xl"></i>
+            </button>
+            <div class="md:hidden ml-2">
                 <button id="menu-toggle" class="text-army focus:outline-none p-2 -mr-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -374,16 +380,18 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 absolute w-full shadow-lg border-t border-gray-200">
-    <a href="#home" class="block py-2 text-army font-semibold">Beranda</a>
-    <a href="#about" class="block py-2 text-gray-700 hover:text-army font-medium">Tentang</a>
-    <a href="#structure" class="block py-2 text-gray-700 hover:text-army font-medium">Struktur</a>
-    <a href="#functions" class="block py-2 text-gray-700 hover:text-army font-medium">Fungsi</a>
-    <a href="#gallery" class="block py-2 text-gray-700 hover:text-army font-medium">Galeri</a>
-    <a href="#aspirasi" class="block py-2 text-gray-700 hover:text-army font-medium">Aspirasi</a>
-    <a href="#contact" class="block py-2 text-gray-700 hover:text-army font-medium">Kontak</a>
-</div>
-    </nav>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 absolute w-full shadow-lg border-t border-gray-200">
+        <a href="#home" class="block py-2 text-army font-semibold">Beranda</a>
+        <a href="#about" class="block py-2 text-gray-700 hover:text-army font-medium">Tentang</a>
+        <a href="#structure" class="block py-2 text-gray-700 hover:text-army font-medium">Struktur</a>
+        <a href="#functions" class="block py-2 text-gray-700 hover:text-army font-medium">Fungsi</a>
+        <a href="#gallery" class="block py-2 text-gray-700 hover:text-army font-medium">Galeri</a>
+        <a href="#aspirasi" class="block py-2 text-gray-700 hover:text-army font-medium">Aspirasi</a>
+        <a href="#contact" class="block py-2 text-gray-700 hover:text-army font-medium">Kontak</a>
+    </div>
+</nav>
 
     <section id="home" class="relative h-screen flex items-center clip-path-hero overflow-hidden" onerror="this.style.backgroundImage='none'; console.warn('Hero background image failed to load.');">
         <div class="absolute inset-0 bg-gradient-to-br from-army-dark/75 to-army/60 z-[1]"></div>
@@ -877,6 +885,7 @@
     </section>
 
 
+    
 
 <section id="aspirasi" class="py-20 bg-silversand-light relative overflow-hidden">
     <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-army/5 rounded-full opacity-50 blur-2xl"></div>
@@ -1029,7 +1038,50 @@
         <img class="modal-content rounded-lg" id="modalImage" alt="Gambar Galeri Diperbesar">
     </div>
 
-    <script>
+
+
+<div id="pernyataanModal" class="fixed inset-0 bg-black bg-opacity-60 z-[9999] flex justify-center items-center p-4 transition-opacity duration-300 ease-in-out opacity-0 hidden">
+    <div id="pernyataanModalContent" class="bg-white w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl overflow-hidden flex flex-col transform scale-95 transition-all duration-300 ease-in-out">
+        <div class="flex justify-between items-center p-4 sm:p-5 border-b border-gray-200 flex-shrink-0">
+            <h2 class="text-lg sm:text-xl font-display font-bold text-army-dark">Pernyataan Sikap Resmi</h2>
+            <button id="closePernyataanModal" class="text-gray-400 hover:text-army-dark text-2xl sm:text-3xl transition-colors">&times;</button>
+        </div>
+        <div class="p-5 sm:p-8 overflow-y-auto">
+            <h3 class="text-xl md:text-2xl font-bold text-army-dark text-center leading-tight">
+                PERNYATAAN SIKAP TERKAIT KASUS DUGAAN PELECEHAN SEKSUAL TERHADAP MAHASISWA FKM UNSRAT
+            </h3>
+            <p class="text-center text-sm text-gray-500 mt-3 mb-8">Manado, 14 Agustus 2025</p>
+            <p class="text-gray-700 leading-relaxed mb-6 text-justify">
+                Kami, Badan Perwakilan Mahasiswa (BPM) Fakultas Kesehatan Masyarakat Universitas Sam Ratulangi, menyatakan sikap resmi dan keprihatinan mendalam atas kasus dugaan pelecehan seksual yang dialami oleh salah satu mahasiswa FKM Unsrat saat melaksanakan Praktik Belajar Lapangan (PBL) di Desa Durian, Kecamatan Sinonsayang, pada 16 Juli 2025. Peristiwa ini merupakan pelanggaran berat terhadap martabat dan keamanan korban, serta menjadi tamparan keras bagi dunia pendidikan yang seharusnya menjadi ruang aman.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-5 bg-silversand-light/50 rounded-lg">
+                    <h4 class="text-lg font-semibold text-army-dark mb-4 flex items-center"><i class="fas fa-bullhorn mr-3"></i>Sikap Resmi & Seruan Moral</h4>
+                    <ul class="space-y-3 list-none text-gray-700 text-sm">
+                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mendesak aparat penegak hukum memproses kasus secara adil dan transparan.</span></li>
+                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mengecam segala bentuk kekerasan seksual dan menolak upaya pembungkaman terhadap korban.</span></li>
+                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mendorong Rektorat & Fakultas memberikan pendampingan hukum, psikologis, dan akademik.</span></li>
+                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Menuntut evaluasi menyeluruh terhadap skema PBL demi menjamin keselamatan mahasiswa.</span></li>
+                    </ul>
+                </div>
+                <div class="p-5 bg-silversand-light/50 rounded-lg">
+                    <h4 class="text-lg font-semibold text-army-dark mb-4 flex items-center"><i class="fas fa-hands-helping mr-3"></i>Tindakan Nyata BPM FKM Unsrat</h4>
+                    <ul class="space-y-3 list-none text-gray-700 text-sm">
+                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Mengawal Proses Hukum:</b> Sejak 24 Juli 2025, BPM aktif mendampingi proses hukum bersama pimpinan fakultas.</span></li>
+                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Membuka Ruang Aspirasi:</b> Melaksanakan audiensi langsung dengan korban dan membuka kanal komunikasi aman.</span></li>
+                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Pendampingan Satgas PPKS:</b> Menjadwalkan pendampingan resmi dengan Satgas PPKS Unsrat pada 19 Agustus 2025.</span></li>
+                    </ul>
+                </div>
+            </div>
+             <div class="mt-8 pt-6 border-t border-silversand-dark/50 text-center">
+                <p class="text-gray-600 text-sm italic">"Kami berkomitmen menjadi garda terdepan dalam melindungi hak-hak mahasiswa dan mendorong terciptanya lingkungan akademik yang aman, sehat, dan bermartabat."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
     
     // --- Accordion Logic ---
 document.addEventListener('DOMContentLoaded', function () {
@@ -1396,7 +1448,49 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         // --- Preloader Hiding Logic End ---
 
-    </script>
+        // --- LOGIC BARU UNTUK POPUP PERNYATAAN ---
+        const pernyataanModal = document.getElementById('pernyataanModal');
+        const pernyataanModalContent = document.getElementById('pernyataanModalContent');
+        const openBtn = document.getElementById('openPernyataanModal');
+        const closeBtn = document.getElementById('closePernyataanModal');
+
+        const openModal = () => {
+            pernyataanModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Mencegah scroll background
+            setTimeout(() => {
+                pernyataanModal.classList.remove('opacity-0');
+                pernyataanModalContent.classList.remove('scale-95');
+            }, 10); // Timeout kecil untuk memastikan transisi berjalan
+        };
+
+        const closeModal = () => {
+            pernyataanModal.classList.add('opacity-0');
+            pernyataanModalContent.classList.add('scale-95');
+            document.body.style.overflow = ''; // Mengembalikan scroll background
+            setTimeout(() => {
+                pernyataanModal.classList.add('hidden');
+            }, 300); // Sesuaikan dengan durasi transisi di CSS
+        };
+
+        if (pernyataanModal && openBtn && closeBtn) {
+            openBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            
+            // Menutup modal jika klik di luar area konten
+            pernyataanModal.addEventListener('click', (event) => {
+                if (event.target === pernyataanModal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !pernyataanModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        }
+
+</script>
     
 
 </body></html>
