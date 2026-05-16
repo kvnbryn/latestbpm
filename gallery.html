@@ -84,6 +84,23 @@
             font-weight: 600;
         }
 
+        /* Masonry Gallery */
+        #galleryGrid {
+            column-fill: balance;
+        }
+
+        #galleryGrid > div {
+            display: inline-block;
+            width: 100%;
+            vertical-align: top;
+        }
+
+        #galleryGrid img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
         /* Modal Galeri */
         .modal {
             display: none;
@@ -198,7 +215,7 @@
                 <p class="text-gray-600 italic">Menampilkan seluruh dokumentasi terbaru</p>
             </div>
 
-            <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6" id="galleryGrid">
+            <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 lg:gap-6" id="galleryGrid">
                 <!-- Gallery items will be populated here -->
             </div>
         </div>
@@ -245,6 +262,13 @@
         }
 
         // Gallery Data
+        // Duplicate yang dihapus:
+        // kegiatan1 = Anniversary BPM 16th
+        // kegiatan2 = Bina Temu Angkatan 2024
+        // kegiatan3 = Forum Komunikasi Ormawa BPM dan BEM
+        // kegiatan4 = Pelantikan 6 Maret 2025
+        // kegiatan5 = Rapat Kerja / Raker
+        // kegiatan6 = Rapat bulanan Kamis 10 Apr 2025
         const galleryImages = [
             { src: 'converted/17 Agustus 2025_IMG-20250817-WA0009.webp', title: '17 Agustus 2025' },
             { src: 'converted/Anniversary BPM 16th_IMG-20250417-WA0105.webp', title: 'Anniversary BPM 16th' },
@@ -273,12 +297,6 @@
             { src: 'converted/Sidang Istimewa_IMG-20260305-WA0097.webp', title: 'Sidang Istimewa' },
             { src: 'converted/Ultah Dekan_IMG-20250327-WA0091.webp', title: 'Ultah Dekan' },
             { src: 'converted/Ultah Dr Ribka_IMG-20250707-WA0026.webp', title: 'Ultah Dr Ribka' },
-            { src: 'converted/kegiatan1.webp', title: 'Anniversary BPM 16th' },
-            { src: 'converted/kegiatan2.webp', title: 'Bina Temu Angkatan 2024' },
-            { src: 'converted/kegiatan3.webp', title: 'Forum Komunikasi Ormawa BPM dan BEM' },
-            { src: 'converted/kegiatan4.webp', title: 'Pelantikan 6 Maret 2025' },
-            { src: 'converted/kegiatan5.webp', title: 'Rapat Kerja' },
-            { src: 'converted/kegiatan6.webp', title: 'Rapat bulanan Kamis 10 Apr 2025' },
             { src: 'converted/kegiatan7.webp', title: 'Rapat bulanan Kamis 13 maret 2025' }
         ];
 
@@ -300,7 +318,7 @@
                 const delay = (index % 4) * 100;
 
                 const itemHtml = `
-                    <div class="break-inside-avoid group relative rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer bg-silversand-light/40 min-h-[250px]" data-aos="zoom-in" data-aos-delay="${delay}">
+                    <div class="break-inside-avoid mb-5 lg:mb-6 group relative rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer bg-silversand-light/40 leading-none" data-aos="zoom-in" data-aos-delay="${delay}">
 
                         <!-- Pulsing Skeleton Background -->
                         <div class="absolute inset-0 animate-pulse bg-gray-300 z-0 skeleton-bg"></div>
@@ -310,7 +328,7 @@
                             src="${imgData.src}"
                             alt="${imgData.title}"
                             loading="lazy"
-                            class="relative z-10 w-full h-auto object-cover transform transition-all duration-700 group-hover:scale-105 opacity-0"
+                            class="relative z-10 block w-full h-auto object-contain transform transition-all duration-700 group-hover:scale-105 opacity-0"
                         >
 
                         <!-- Permanent Overlay -->
@@ -332,10 +350,11 @@
 
                 img.addEventListener('error', () => {
                     const skeleton = img.previousElementSibling;
+
                     if (skeleton) {
                         skeleton.classList.remove('animate-pulse');
                         skeleton.innerHTML = `
-                            <div class="flex items-center justify-center h-full text-center text-gray-600 p-4">
+                            <div class="flex items-center justify-center min-h-[220px] text-center text-gray-600 p-4 leading-normal">
                                 Gambar gagal dimuat
                             </div>
                         `;
