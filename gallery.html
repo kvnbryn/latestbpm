@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - BPM FKM UNSRAT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        army: {
+                            light: '#5D6E1E',
+                            DEFAULT: '#4B5320',
+                            dark: '#3A4119'
+                        },
+                        silversand: {
+                            light: '#E0E2E1',
+                            DEFAULT: '#BDC1BF',
+                            dark: '#A5A9A7'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'display': ['Orbitron', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f8f9fa; color: #343a40; }
+
+        /* Navbar Styling */
+        .nav-link { position: relative; transition: all 0.3s ease; color: #4A5568; }
+        .nav-link:hover { color: #3A4119; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background-color: #4B5320; transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: #3A4119; font-weight: 600; }
+
+        /* Modal Galeri */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        .modal.show { opacity: 1; display: flex; }
+        .modal-content { max-width: 90%; max-height: 90vh; object-fit: contain; transform: scale(0.9); transition: transform 0.3s ease; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .modal.show .modal-content { transform: scale(1); }
+        .modal-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.5); transition: color 0.3s ease; }
+        .modal-close:hover { color: #BDC1BF; }
+        .modal-caption { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: white; font-size: 1.2rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+    </style>
+</head>
+<body class="bg-silversand-light pt-20">
+
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 transition-all duration-300 shadow-md" id="navbar">
+        <div class="container mx-auto px-4 lg:px-12 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 group">
+                <img src="converted/logo.webp" alt="Logo BPM FKM" class="h-10 w-auto group-hover:scale-110 transition-transform duration-300">
+                <span class="text-xl font-display font-semibold text-army group-hover:text-army-dark transition-colors">BPM FKM</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link">Beranda</a>
+                <a href="index.html#about" class="nav-link">Tentang</a>
+                <a href="index.html#structure" class="nav-link">Struktur</a>
+                <a href="index.html#functions" class="nav-link">Fungsi</a>
+                <a href="gallery.html" class="nav-link active">Galeri</a>
+                <a href="index.html#aspirasi" class="nav-link">Aspirasi</a>
+                <a href="index.html#contact" class="nav-link">Kontak</a>
+            </div>
+
+            <div class="flex items-center md:hidden">
+                <button id="menu-toggle" class="text-army focus:outline-none p-2 -mr-2">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 absolute w-full shadow-lg border-t border-gray-200">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-army font-medium">Beranda</a>
+            <a href="gallery.html" class="block py-2 text-army font-semibold">Galeri</a>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-army-dark to-army text-white py-16 text-center relative overflow-hidden" data-aos="fade-down">
+        <div class="absolute inset-0 bg-[url('converted/1.webp')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+        <div class="container mx-auto px-4 lg:px-12 relative z-10">
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Galeri BPM FKM UNSRAT</h1>
+            <p class="text-lg md:text-xl text-silversand-light max-w-2xl mx-auto">Momen-momen berharga dan dokumentasi kegiatan organisasi kami.</p>
+        </div>
+    </header>
+
+    <section class="py-16">
+        <div class="container mx-auto px-4 lg:px-12">
+            <!-- Filter/Categories (Optional future enhancement) -->
+            <div class="mb-10 text-center" data-aos="fade-up">
+                <p class="text-gray-600 italic">Menampilkan seluruh dokumentasi terbaru</p>
+            </div>
+
+            <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6" id="galleryGrid">
+                <!-- Gallery items will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-army-dark text-silversand-light py-8 text-center">
+        <div class="container mx-auto px-4 lg:px-12">
+            <p>© <span id="current-year"></span> BPM FKM UNSRAT. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="galleryModal">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Gambar Diperbesar">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Set Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Gallery Data (from converted folder)
+        const galleryImages = [
+            { src: 'converted/17 Agustus 2025_IMG-20250817-WA0009.webp', title: '17 Agustus 2025' },
+            { src: 'converted/Anniversary BPM 16th_IMG-20250417-WA0105.webp', title: 'Anniversary BPM 16th' },
+            { src: 'converted/BAKTI SOSIAL PANTI SAYAP KASIH_IMG-20251128-WA0205.webp', title: 'Bakti Sosial Panti Sayap Kasih' },
+            { src: 'converted/Bina Temu Angkatan 2024_IMG_2931.webp', title: 'Bina Temu Angkatan 2024' },
+            { src: 'converted/BPM ON DUTY_IMG-20251003-WA0074.webp', title: 'BPM On Duty' },
+            { src: 'converted/Dies Natalis Unsrat 2025_IMG-20251205-WA0025.webp', title: 'Dies Natalis Unsrat 2025' },
+            { src: 'converted/Forum Komunikasi Ormawa 10 Feb 2026_IMG-20260210-WA0041.webp', title: 'Forum Komunikasi Ormawa' },
+            { src: 'converted/Forum Komunikasi Ormawa BPM dan BEM_IMG-20250325-WA0060.webp', title: 'Forum Komunikasi Ormawa BPM & BEM' },
+            { src: 'converted/Hari Pendidikan Nasional_IMG-20250502-WA0050.webp', title: 'Hari Pendidikan Nasional' },
+            { src: 'converted/Ibadah Pra Natal_IMG-20251212-WA0124.webp', title: 'Ibadah Pra Natal' },
+            { src: 'converted/MPM Goes To Fakultas_IMG-20260210-WA0057.webp', title: 'MPM Goes To Fakultas' },
+            { src: 'converted/NNU 2025_IMG-20251213-WA0036.webp', title: 'NNU 2025' },
+            { src: 'converted/Pelantikan 6 Maret 2025_IMG_9957.webp', title: 'Pelantikan 6 Maret 2025' },
+            { src: 'converted/Pelantikan KPUM_IMG-20260305-WA0026.webp', title: 'Pelantikan KPUM' },
+            { src: 'converted/Pembahasan Proker Kerja Umum BPM_IMG-20251113-WA0064.webp', title: 'Pembahasan Proker' },
+            { src: 'converted/Penyerahan Aspirasi Mahasiswa ke WD3_IMG-20250602-WA0033.webp', title: 'Penyerahan Aspirasi ke WD3' },
+            { src: 'converted/PKKMB ANGKATAN 2025_IMG-20250815-WA0066.webp', title: 'PKKMB Angkatan 2025' },
+            { src: 'converted/PROKER VIDEO STRUKTUR_IMG-20250911-WA0091.webp', title: 'Proker Video Struktur' },
+            { src: 'converted/Raker_IMG_2255.webp', title: 'Rapat Kerja' },
+            { src: 'converted/Rapat bulanan Kamis 10 Apr 2025_IMG-20250410-WA0060.webp', title: 'Rapat Bulanan April' },
+            { src: 'converted/Rapat Bulanan Kamis 5 Februari 2026_IMG-20260205-WA0091.webp', title: 'Rapat Bulanan Februari' },
+            { src: 'converted/Rapat Bulanan Kamis 5 Juni 2025_IMG-20250605-WA0126.webp', title: 'Rapat Bulanan Juni' },
+            { src: 'converted/Rapat Bulanan Kamis 9 Oktober 2025_IMG-20251009-WA0105.webp', title: 'Rapat Bulanan Oktober' },
+            { src: 'converted/Rapat Perdana KPUM_IMG-20260317-WA0036.webp', title: 'Rapat Perdana KPUM' },
+            { src: 'converted/Sidang Istimewa_IMG-20260305-WA0097.webp', title: 'Sidang Istimewa' },
+            { src: 'converted/Ultah Dekan_IMG-20250327-WA0091.webp', title: 'Ultah Dekan' },
+            { src: 'converted/Ultah Dr Ribka_IMG-20250707-WA0026.webp', title: 'Ultah Dr Ribka' },
+            { src: 'converted/kegiatan1.webp', title: 'Pelatihan Kepemimpinan' },
+            { src: 'converted/kegiatan2.webp', title: 'Seminar Inovasi Sosial' },
+            { src: 'converted/kegiatan3.webp', title: 'Rapat Koordinasi' }
+        ];
+
+        const galleryGrid = document.getElementById('galleryGrid');
+        
+        galleryImages.forEach((imgData, index) => {
+            const delay = (index % 4) * 100;
+            const itemHtml = `
+                <div class="break-inside-avoid group relative rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer" data-aos="zoom-in" data-aos-delay="${delay}">
+                    <img src="${imgData.src}" alt="${imgData.title}" loading="lazy" class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    
+                    <!-- Permanent, sleek gradient overlay at the bottom -->
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1a1c14]/95 via-[#1a1c14]/60 to-transparent pt-24 pb-5 px-5">
+                        <h3 class="text-white font-bold text-lg md:text-xl leading-tight group-hover:text-army-light transition-colors duration-300 drop-shadow-md">${imgData.title}</h3>
+                        
+                        <!-- Animated accent line -->
+                        <div class="w-8 h-[2px] bg-army mt-3 transform origin-left transition-all duration-500 group-hover:w-full opacity-80"></div>
+                    </div>
+                </div>
+            `;
+            galleryGrid.innerHTML += itemHtml;
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeBtn = document.getElementById('closeModal');
+
+        // Event delegation for dynamically added images
+        galleryGrid.addEventListener('click', function(e) {
+            const item = e.target.closest('.break-inside-avoid');
+            if (item) {
+                const img = item.querySelector('img');
+                const title = item.querySelector('h3').textContent;
+                modalImg.src = img.src;
+                modalCaption.textContent = title;
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        function closeModalFunc() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                document.body.style.overflow = '';
+            }, 300); // wait for fade out
+        }
+
+        closeBtn.addEventListener('click', closeModalFunc);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModalFunc();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && modal.classList.contains('show')) closeModalFunc();
+        });
+    </script>
+</body>
+</html>

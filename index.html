@@ -3,7 +3,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BPM FKM UNSRAT - Badan Perwakilan Mahasiswa</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -39,15 +41,15 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Montserrat', sans-serif; background-color: #f8f9fa; color: #343a40; }
         .clip-path-hero { clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
-        #home { background-image: url('foto/1.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
+        #home { background-image: url('converted/1.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; }
         #home[style*="background-image: none"] { background-color: #3A4119; }
 
         /* --- Structure Section Styling --- */
         .commission-container { position: relative; }
         /* Desktop Wrapper Styling */
-        #commissionSliderWrapper { overflow: hidden; position: relative; width: 100%; }
+        #commissionSliderWrapper { overflow: hidden; position: relative; width: 100%; transition: height 0.5s ease-in-out; }
         /* Desktop Slider Styling */
-        #commissionSlider { display: flex; width: 100%; transition: transform 0.5s ease-in-out; /* Transition for desktop */ }
+        #commissionSlider { display: flex; width: 100%; transition: transform 0.5s ease-in-out; align-items: flex-start; /* Transition for desktop */ }
         /* Desktop Slide Styling */
         .commission-slide { min-width: 100%; width: 100%; flex-shrink: 0; box-sizing: border-box; opacity: 0; transform: translateX(50px); display: flex; flex-direction: column; align-items: center; gap: 1.5rem; padding: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
         .visible-slide { opacity: 1; transform: translateX(0); }
@@ -58,7 +60,7 @@
         .chairman-block img {
              width: 14rem; /* Was 12rem */
              height: 17.5rem; /* Was 15rem */
-             border-radius: 100px; /* Was 90px */
+             border-radius: 4px; /* Was 90px */
              object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .chairman-block .name { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; color: #3A4119; margin-top: 0.75rem; }
@@ -70,7 +72,7 @@
         .member-card img {
             width: 10rem; /* Was 9rem */
             height: 12.5rem; /* Was 11.25rem */
-            border-radius: 80px; /* Was 70px */
+            border-radius: 4px; /* Was 70px */
             object-fit: cover; box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
         .member-card .name { font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; color: #3A4119; margin-top: 0.5rem; }
@@ -81,7 +83,7 @@
         .section-title::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60%; height: 4px; background: linear-gradient(90deg, #4B5320 0%, #BDC1BF 100%); border-radius: 2px; }
 
         /* Styling Galeri */
-        .gallery-item { overflow: hidden; position: relative; cursor: pointer; border-radius: 0.75rem; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .gallery-item { overflow: hidden; position: relative; cursor: pointer; border-radius: 0.125rem; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .gallery-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 10px 25px rgba(75, 83, 32, 0.2); }
         .gallery-item img { transition: transform 0.5s ease; width: 100%; height: 100%; object-fit: cover; }
         .gallery-item:hover img { transform: scale(1.1); }
@@ -100,7 +102,7 @@
         /* End Navbar Styling */
 
         /* Styling Kartu Fungsi */
-        .function-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: visible; background-color: white; border: 1px solid #E0E2E1; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .function-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: visible; background-color: white; border: 1px solid #E0E2E1; border-radius: 0.125rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .function-card:hover { transform: translateY(-10px); box-shadow: 0 12px 20px rgba(75, 83, 32, 0.15); border-color: #A5A9A7; }
         .function-card .hexagon { margin-bottom: 1rem; transition: transform 0.3s ease; }
         .function-card:hover .hexagon { transform: scale(1.1) rotate(-10deg); }
@@ -110,7 +112,7 @@
         /* End Styling Kartu Fungsi */
 
         /* Styling Tombol Umum */
-        .btn { display: inline-block; padding: 0.8rem 1.8rem; border-radius: 0.5rem; font-weight: 600; text-align: center; transition: all 0.3s ease; cursor: pointer; border: none; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+        .btn { display: inline-block; padding: 0.8rem 1.8rem; border-radius: 0.125rem; font-weight: 600; text-align: center; transition: all 0.3s ease; cursor: pointer; border: none; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
         .btn-army { background-color: #4B5320; color: white; }
         .btn-army:hover { background-color: #3A4119; box-shadow: 0 5px 12px rgba(75, 83, 32, 0.25); transform: translateY(-2px); }
         .btn-silversand { background-color: #BDC1BF; color: #3A4119; }
@@ -194,7 +196,7 @@
             .chairman-block img {
                 width: 18rem; /* Significantly increased size again */
                 height: 22.5rem; /* Significantly increased size again */
-                border-radius: 110px; /* Adjusted radius */
+                border-radius: 4px; /* Adjusted radius */
             }
             .chairman-block .name { font-size: 1rem; }
             .chairman-block .title { font-size: 0.75rem; }
@@ -213,7 +215,7 @@
             .member-card img {
                 width: 16rem; /* Significantly increased size again */
                 height: 20rem; /* Significantly increased size again */
-                border-radius: 100px; /* Adjusted radius */
+                border-radius: 4px; /* Adjusted radius */
             }
             .member-card .name { font-size: 0.875rem; line-height: 1.1rem; }
             .member-card .title { font-size: 0.7rem; }
@@ -248,7 +250,7 @@
         /* Styling untuk Panel Fungsi di About Section */
         #about-functions-panel {
             background-color: white;
-            border-radius: 0.75rem;
+            border-radius: 0.125rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
             border: 1px solid #E0E2E1; /* silversand-light */
             overflow: hidden; /* Agar border-radius bekerja */
@@ -344,7 +346,7 @@
 
 
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Montserrat, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-0{bottom:0px}.bottom-10{bottom:2.5rem}.left-0{left:0px}.left-1\/2{left:50%}.right-0{right:0px}.top-0{top:0px}.top-1\/4{top:25%}.top-24{top:6rem}.z-0{z-index:0}.z-10{z-index:10}.z-50{z-index:50}.z-\[1\]{z-index:1}.z-\[3\]{z-index:3}.z-\[9999\]{z-index:9999}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.-mb-10{margin-bottom:-2.5rem}.-mb-20{margin-bottom:-5rem}.-ml-10{margin-left:-2.5rem}.-ml-24{margin-left:-6rem}.-mr-2{margin-right:-0.5rem}.-mr-20{margin-right:-5rem}.-mt-20{margin-top:-5rem}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-3{margin-right:0.75rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[4\/3\]{aspect-ratio:4/3}.h-10{height:2.5rem}.h-16{height:4rem}.h-40{height:10rem}.h-48{height:12rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-72{height:18rem}.h-8{height:2rem}.h-80{height:20rem}.h-full{height:100%}.h-screen{height:100vh}.min-h-28{min-height:7rem}.w-16{width:4rem}.w-24{width:6rem}.w-32{width:8rem}.w-40{width:10rem}.w-48{width:12rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-72{width:18rem}.w-8{width:2rem}.w-auto{width:auto}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.flex-shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.list-none{list-style-type:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-12{gap:3rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-5 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.25rem * var(--tw-space-x-reverse));margin-left:calc(1.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-all{word-break:break-all}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-t-lg{border-top-left-radius:0.5rem;border-top-right-radius:0.5rem}.border-2{border-width:2px}.border-4{border-width:4px}.border-l-4{border-left-width:4px}.border-t{border-top-width:1px}.border-t-2{border-top-width:2px}.border-army{--tw-border-opacity:1;border-color:rgb(75 83 32 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-silversand{--tw-border-opacity:1;border-color:rgb(189 193 191 / var(--tw-border-opacity, 1))}.border-silversand-dark{--tw-border-opacity:1;border-color:rgb(165 169 167 / var(--tw-border-opacity, 1))}.border-silversand-dark\/50{border-color:rgb(165 169 167 / 0.5)}.border-silversand-light{--tw-border-opacity:1;border-color:rgb(224 226 225 / var(--tw-border-opacity, 1))}.border-t-army{--tw-border-opacity:1;border-top-color:rgb(75 83 32 / var(--tw-border-opacity, 1))}.bg-army\/5{background-color:rgb(75 83 32 / 0.05)}.bg-silversand-light{--tw-bg-opacity:1;background-color:rgb(224 226 225 / var(--tw-bg-opacity, 1))}.bg-silversand\/10{background-color:rgb(189 193 191 / 0.1)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-army-dark{--tw-bg-opacity:1;background-color:rgb(58 65 25 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-t{background-image:linear-gradient(to top, var(--tw-gradient-stops))}.from-army-dark\/75{--tw-gradient-from:rgb(58 65 25 / 0.75) var(--tw-gradient-from-position);--tw-gradient-to:rgb(58 65 25 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-army\/5{--tw-gradient-from:rgb(75 83 32 / 0.05) var(--tw-gradient-from-position);--tw-gradient-to:rgb(75 83 32 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-black\/75{--tw-gradient-from:rgb(0 0 0 / 0.75) var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 0 0 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-black\/40{--tw-gradient-to:rgb(0 0 0 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(0 0 0 / 0.4) var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-army\/60{--tw-gradient-to:rgb(75 83 32 / 0.6) var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-12{padding-top:3rem;padding-bottom:3rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-display{font-family:Orbitron, sans-serif}.font-sans{font-family:Montserrat, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-5xl{font-size:3rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wider{letter-spacing:0.05em}.text-army{--tw-text-opacity:1;color:rgb(75 83 32 / var(--tw-text-opacity, 1))}.text-army-dark{--tw-text-opacity:1;color:rgb(58 65 25 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-silversand-light{--tw-text-opacity:1;color:rgb(224 226 225 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-gray-300\/80{color:rgb(209 213 219 / 0.8)}.text-gray-300\/90{color:rgb(209 213 219 / 0.9)}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.opacity-50{opacity:0.5}.opacity-60{opacity:0.6}.opacity-80{opacity:0.8}.opacity-0{opacity:0}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur-2xl{--tw-blur:blur(40px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-xl{--tw-blur:blur(24px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-lg{--tw-drop-shadow:drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-md{--tw-drop-shadow:drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-sm{--tw-drop-shadow:drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.duration-700{transition-duration:700ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1)}.hover\:-translate-y-1:hover{--tw-translate-y:-0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:text-army:hover{--tw-text-opacity:1;color:rgb(75 83 32 / var(--tw-text-opacity, 1))}.hover\:text-army-dark:hover{--tw-text-opacity:1;color:rgb(58 65 25 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:shadow-2xl:hover{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:text-army-dark{--tw-text-opacity:1;color:rgb(58 65 25 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-silversand{--tw-text-opacity:1;color:rgb(189 193 191 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:block{display:block}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:p-8{padding:2rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}.md\:h-96{height:24rem}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:justify-start{justify-content:flex-start}.md\:gap-12{gap:3rem}.md\:gap-8{gap:2rem}.md\:text-left{text-align:left}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-7xl{font-size:4.5rem;line-height:1}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 1024px){.lg\:col-span-1{grid-column:span 1 / span 1}.lg\:col-start-2{grid-column-start:2}.lg\:h-full{height:100%}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:gap-16{gap:4rem}.lg\:opacity-0{opacity:0}.group:hover .lg\:group-hover\:opacity-80{opacity:0.8}}</style></head>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Montserrat, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-0{bottom:0px}.bottom-10{bottom:2.5rem}.left-0{left:0px}.left-1\/2{left:50%}.right-0{right:0px}.top-0{top:0px}.top-1\/4{top:25%}.top-24{top:6rem}.z-0{z-index:0}.z-10{z-index:10}.z-50{z-index:50}.z-\[1\]{z-index:1}.z-\[3\]{z-index:3}.z-\[9999\]{z-index:9999}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.-mb-10{margin-bottom:-2.5rem}.-mb-20{margin-bottom:-5rem}.-ml-10{margin-left:-2.5rem}.-ml-24{margin-left:-6rem}.-mr-2{margin-right:-0.5rem}.-mr-20{margin-right:-5rem}.-mt-20{margin-top:-5rem}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-3{margin-right:0.75rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[4\/3\]{aspect-ratio:4/3}.h-10{height:2.5rem}.h-16{height:4rem}.h-40{height:10rem}.h-48{height:12rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-72{height:18rem}.h-8{height:2rem}.h-80{height:20rem}.h-full{height:100%}.h-screen{height:100vh}.min-h-28{min-height:7rem}.w-16{width:4rem}.w-24{width:6rem}.w-32{width:8rem}.w-40{width:10rem}.w-48{width:12rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-72{width:18rem}.w-8{width:2rem}.w-auto{width:auto}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.flex-shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.list-none{list-style-type:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-12{gap:3rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-5 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.25rem * var(--tw-space-x-reverse));margin-left:calc(1.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-all{word-break:break-all}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.5rem}.rounded-sm{border-radius:0.75rem}.rounded-t-sm{border-top-left-radius:0.5rem;border-top-right-radius:0.5rem}.border-2{border-width:2px}.border-4{border-width:4px}.border-l-4{border-left-width:4px}.border-t{border-top-width:1px}.border-t-2{border-top-width:2px}.border-army{--tw-border-opacity:1;border-color:rgb(75 83 32 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-silversand{--tw-border-opacity:1;border-color:rgb(189 193 191 / var(--tw-border-opacity, 1))}.border-silversand-dark{--tw-border-opacity:1;border-color:rgb(165 169 167 / var(--tw-border-opacity, 1))}.border-silversand-dark\/50{border-color:rgb(165 169 167 / 0.5)}.border-silversand-light{--tw-border-opacity:1;border-color:rgb(224 226 225 / var(--tw-border-opacity, 1))}.border-t-army{--tw-border-opacity:1;border-top-color:rgb(75 83 32 / var(--tw-border-opacity, 1))}.bg-army\/5{background-color:rgb(75 83 32 / 0.05)}.bg-silversand-light{--tw-bg-opacity:1;background-color:rgb(224 226 225 / var(--tw-bg-opacity, 1))}.bg-silversand\/10{background-color:rgb(189 193 191 / 0.1)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-army-dark{--tw-bg-opacity:1;background-color:rgb(58 65 25 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-t{background-image:linear-gradient(to top, var(--tw-gradient-stops))}.from-army-dark\/75{--tw-gradient-from:rgb(58 65 25 / 0.75) var(--tw-gradient-from-position);--tw-gradient-to:rgb(58 65 25 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-army\/5{--tw-gradient-from:rgb(75 83 32 / 0.05) var(--tw-gradient-from-position);--tw-gradient-to:rgb(75 83 32 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-black\/75{--tw-gradient-from:rgb(0 0 0 / 0.75) var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 0 0 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-black\/40{--tw-gradient-to:rgb(0 0 0 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(0 0 0 / 0.4) var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-army\/60{--tw-gradient-to:rgb(75 83 32 / 0.6) var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-12{padding-top:3rem;padding-bottom:3rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-display{font-family:Orbitron, sans-serif}.font-sans{font-family:Montserrat, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-5xl{font-size:3rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wider{letter-spacing:0.05em}.text-army{--tw-text-opacity:1;color:rgb(75 83 32 / var(--tw-text-opacity, 1))}.text-army-dark{--tw-text-opacity:1;color:rgb(58 65 25 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-silversand-light{--tw-text-opacity:1;color:rgb(224 226 225 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-gray-300\/80{color:rgb(209 213 219 / 0.8)}.text-gray-300\/90{color:rgb(209 213 219 / 0.9)}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.opacity-50{opacity:0.5}.opacity-60{opacity:0.6}.opacity-80{opacity:0.8}.opacity-0{opacity:0}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur-2xl{--tw-blur:blur(40px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-xl{--tw-blur:blur(24px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-lg{--tw-drop-shadow:drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-md{--tw-drop-shadow:drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-sm{--tw-drop-shadow:drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.duration-700{transition-duration:700ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1)}.hover\:-translate-y-1:hover{--tw-translate-y:-0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:text-army:hover{--tw-text-opacity:1;color:rgb(75 83 32 / var(--tw-text-opacity, 1))}.hover\:text-army-dark:hover{--tw-text-opacity:1;color:rgb(58 65 25 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:shadow-2xl:hover{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:text-army-dark{--tw-text-opacity:1;color:rgb(58 65 25 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-silversand{--tw-text-opacity:1;color:rgb(189 193 191 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:block{display:block}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:p-8{padding:2rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}.md\:h-96{height:24rem}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:justify-start{justify-content:flex-start}.md\:gap-12{gap:3rem}.md\:gap-8{gap:2rem}.md\:text-left{text-align:left}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-7xl{font-size:4.5rem;line-height:1}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 1024px){.lg\:col-span-1{grid-column:span 1 / span 1}.lg\:col-start-2{grid-column-start:2}.lg\:h-full{height:100%}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:gap-16{gap:4rem}.lg\:opacity-0{opacity:0}.group:hover .lg\:group-hover\:opacity-80{opacity:0.8}}</style></head>
 <body class="bg-silversand-light">
 
     <div id="preloader" class="fixed inset-0 bg-silversand-light z-[9999] flex justify-center items-center transition-opacity duration-700 ease-out">
@@ -352,9 +354,9 @@
 </div>
 
 <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 transition-all duration-300 shadow-sm" id="navbar">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="container mx-auto px-4 lg:px-12 py-3 flex justify-between items-center">
         <a href="#home" class="flex items-center space-x-2 group">
-            <img src="foto/logo.png" alt="Logo BPM FKM" class="h-10 w-auto group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/40x40/eeeeee/cccccc?text=LOGO';">
+            <img src="converted/logo.webp" alt="Logo BPM FKM" class="h-10 w-auto group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/40x40/eeeeee/cccccc?text=LOGO';">
             <span class="text-xl font-display font-semibold text-army group-hover:text-army-dark transition-colors">BPM FKM</span>
         </a>
 
@@ -363,14 +365,14 @@
             <a href="#about" class="nav-link">Tentang</a>
             <a href="#structure" class="nav-link">Struktur</a>
             <a href="#functions" class="nav-link">Fungsi</a>
-            <a href="#gallery" class="nav-link">Galeri</a>
+            <a href="gallery.html" class="nav-link">Galeri</a>
             <a href="#aspirasi" class="nav-link">Aspirasi</a>
             <a href="#contact" class="nav-link">Kontak</a>
         </div>
 
         <div class="flex items-center">
             <button id="openPernyataanModal" aria-label="Lihat Pernyataan Resmi" class="text-army hover:text-army-dark transition-colors duration-300 p-2 rounded-full hover:bg-gray-100">
-                <i class="fas fa-bell text-xl"></i>
+                <i class="ph ph-bell text-xl"></i>
             </button>
             <div class="md:hidden ml-2">
                 <button id="menu-toggle" class="text-army focus:outline-none p-2 -mr-2">
@@ -387,52 +389,67 @@
         <a href="#about" class="block py-2 text-gray-700 hover:text-army font-medium">Tentang</a>
         <a href="#structure" class="block py-2 text-gray-700 hover:text-army font-medium">Struktur</a>
         <a href="#functions" class="block py-2 text-gray-700 hover:text-army font-medium">Fungsi</a>
-        <a href="#gallery" class="block py-2 text-gray-700 hover:text-army font-medium">Galeri</a>
+        <a href="gallery.html" class="block py-2 text-gray-700 hover:text-army font-medium">Galeri</a>
         <a href="#aspirasi" class="block py-2 text-gray-700 hover:text-army font-medium">Aspirasi</a>
         <a href="#contact" class="block py-2 text-gray-700 hover:text-army font-medium">Kontak</a>
     </div>
 </nav>
 
-    <section id="home" class="relative h-screen flex items-center clip-path-hero overflow-hidden" onerror="this.style.backgroundImage='none'; console.warn('Hero background image failed to load.');">
-        <div class="absolute inset-0 bg-gradient-to-br from-army-dark/75 to-army/60 z-[1]"></div>
-        <div class="container mx-auto px-4 relative z-[3]">
-            <div class="max-w-3xl text-left">
-                <h1 class="hero-text-item text-5xl md:text-7xl font-display font-bold text-white mb-3 leading-tight drop-shadow-lg">
-                    Badan Perwakilan Mahasiswa
+    <section id="home" class="relative h-screen flex items-center overflow-hidden" onerror="this.style.backgroundImage='none'; console.warn('Hero background image failed to load.');">
+        <!-- Sophisticated Asymmetrical Gradient Overlay -->
+        <!-- Darker on the left for text readability, fading to the right to reveal the image -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#1a1c14]/95 via-[#1a1c14]/80 to-black/30 z-[1]"></div>
+        
+        <div class="container mx-auto px-4 lg:px-12 relative z-[3]">
+            <div class="max-w-3xl text-left border-l-4 border-army-light pl-6 md:pl-8 py-2">
+                
+                <!-- Main Title: Strong, Clear, Professional -->
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-sans font-bold text-white mb-4 leading-tight drop-shadow-lg">
+                    Badan Perwakilan <br>
+                    <span class="text-gray-200">Mahasiswa</span>
                 </h1>
-                <hr class="hero-text-item border-t-2 border-silversand-light w-24 my-4 opacity-80">
-                <p class="hero-text-item text-xl md:text-2xl font-sans font-semibold text-silversand-light mb-1 drop-shadow-md">
+                
+                <!-- Secondary Title: Faculty -->
+                <h2 class="text-2xl md:text-3xl font-sans font-semibold text-army-light mb-2 drop-shadow-md">
                     Fakultas Kesehatan Masyarakat
-                </p>
-                <p class="hero-text-item text-lg md:text-xl font-sans text-silversand-light mb-6 drop-shadow-md">
+                </h2>
+                
+                <!-- Tertiary Title: University -->
+                <h3 class="text-lg md:text-xl font-sans font-medium text-silversand-light mb-6 drop-shadow-md tracking-wide">
                     Universitas Sam Ratulangi
-                </p>
-                <p class="hero-text-item text-base md:text-lg text-white mb-5 max-w-xl leading-relaxed drop-shadow-sm">
-                    </p>
-                <div class="hero-text-item flex flex-col sm:flex-row gap-4">
-                    <a href="#about" class="btn btn-silversand">
+                </h3>
+                
+                <!-- Informative Paragraph (Added back for clarity and context) -->
+                
+                <!-- Professional Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="#about" class="px-8 py-3.5 bg-army text-white font-semibold text-sm md:text-base text-center transition-all duration-300 hover:bg-army-dark hover:shadow-[0_8px_20px_rgba(75,83,32,0.3)] hover:-translate-y-1 rounded-sm border border-transparent">
                         Pelajari Lebih Lanjut
                     </a>
-                    <a href="#contact" class="btn btn-outline-silversand">
+                    <a href="#contact" class="px-8 py-3.5 bg-transparent text-white font-semibold text-sm md:text-base text-center transition-all duration-300 border border-silversand-dark hover:border-white hover:bg-white/10 hover:-translate-y-1 rounded-sm">
                         Hubungi Kami
                     </a>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white scroll-indicator z-[3]">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+        
+        <!-- Subtle Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/50 hover:text-white transition-colors duration-300 z-[3] animate-bounce">
+            <a href="#about" aria-label="Scroll down">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
         </div>
     </section>
 
-    <section id="about" class="py-20 bg-white relative overflow-hidden">
+    <section id="about" data-aos="fade-up" class="py-20 bg-white relative overflow-hidden">
         <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-army/5 rounded-full opacity-50 blur-2xl"></div>
         <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-48 h-48 bg-silversand/10 rounded-full opacity-60 blur-xl"></div>
 
-        <div class="container mx-auto px-4 relative z-10">
+        <div class="container mx-auto px-4 lg:px-12 relative z-10">
              <div id="about-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start"> <div class="lg:col-span-1"> <h2 class="section-title text-3xl md:text-4xl font-display font-bold mb-10">Tentang BPM FKM UNSRAT</h2>
-                    <div class="p-6 bg-gradient-to-br from-army/5 to-transparent rounded-lg border-l-4 border-army shadow-sm">
+                    <div class="p-6 bg-gradient-to-br from-army/5 to-transparent rounded-sm border-l-4 border-army shadow-sm">
                         <h3 class="text-xl font-bold text-army-dark mb-3">Lembaga Legislatif Mahasiswa</h3>
                         <p class="text-gray-700 leading-relaxed">
                             Badan Perwakilan Mahasiswa Fakultas Kesehatan Masyarakat Universitas Sam Ratulangi Manado (BPM FKM UNSRAT) merupakan Lembaga Legislatif Mahasiswa di FKM UNSRAT. Sesuai AD/ART ORMAWA FKM UNSRAT, BPM berkedudukan sebagai organisasi perwakilan seluruh mahasiswa FKM UNSRAT, lembaga tertinggi dalam tugas fungsional organisasi kemahasiswaan, dan pemegang kedaulatan mahasiswa FKM UNSRAT.
@@ -440,36 +457,36 @@
                     </div>
                     </div>
 
-                <div id="about-functions-panel" class="lg:col-span-1"> <div class="sticky top-24"> <div class="panel-header rounded-t-lg">
+                <div id="about-functions-panel" class="lg:col-span-1"> <div class="sticky top-24"> <div class="panel-header rounded-t-sm">
                              <h3 class="text-xl md:text-2xl font-semibold text-white">Wewenang dan Fungsi Rinci BPM</h3>
                         </div>
                         <div class="panel-content">
                             <ul class="list-none space-y-4 text-gray-700 leading-relaxed text-sm"> <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
+                                    <i class="ph-fill ph-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
                                     <span>Membuat, mengeluarkan, dan mensosialisasikan kebijakan serta ketetapan yang diperlukan untuk kepentingan ORMAWA FKM UNSRAT di luar AD/ART.</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
+                                    <i class="ph-fill ph-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
                                     <span>Melakukan Amandemen terhadap AD/ART ORMAWA FKM UNSRAT.</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
+                                    <i class="ph-fill ph-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
                                     <span>Meminta laporan pertanggungjawaban Ketua dan Wakil Ketua BEM FKM UNSRAT pada akhir masa jabatannya.</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
+                                    <i class="ph-fill ph-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
                                     <span>Memberhentikan Ketua dan Wakil Ketua BEM FKM UNSRAT jika terbukti melanggar AD/ART melalui Sidang Istimewa BPM.</span>
                                 </li>
                                  <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
+                                    <i class="ph-fill ph-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
                                     <span>Menggunakan hak interpelasi, hak angket, dan hak budgeting dalam melaksanakan tugas.</span>
                                 </li>
                                  <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
+                                    <i class="ph-fill ph-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
                                     <span>Menerima dan menetapkan aturan atau kebijakan usulan BEM, BKM, dan UKM FKM UNSRAT melalui Sidang Pleno.</span>
                                 </li>
                                  <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
+                                    <i class="ph-fill ph-check-circle text-army mt-1 mr-3 flex-shrink-0"></i>
                                     <span>Memfasilitasi dan menyelesaikan sengketa antar ORMAWA FKM UNSRAT.</span>
                                 </li>
                             </ul>
@@ -480,67 +497,64 @@
         </div>
     </section>
 
-    <section id="structure" class="py-20 bg-silversand-light relative overflow-hidden">
-        <div class="container mx-auto px-4">
+    <section id="structure" data-aos="fade-up" class="py-20 bg-silversand-light relative overflow-hidden">
+        <div class="container mx-auto px-4 lg:px-12">
             <div class="text-center mb-16">
                 <h2 class="section-title text-3xl md:text-4xl font-display font-bold mb-4 inline-block">Struktur &amp; Tugas Komisi</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Struktur organisasi BPM FKM UNSRAT periode 2025-2026 beserta tugas pokok masing-masing komisi.</p>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg p-4 sm:p-8 mb-8 relative commission-container">
+            <div class="bg-white/40 backdrop-blur-md border border-white/50 rounded-sm shadow-[0_20px_50px_rgba(75,83,32,0.15)] p-4 sm:p-8 mb-8 relative commission-container">
                 <div class="relative">
                     <div id="commissionSliderWrapper" style="overflow: hidden;">
                         <div id="commissionSlider" style="transform: translateX(0%); transition: transform 0.5s ease-in-out;">
                             <div class="commission-slide visible-slide">
                                 <div class="chairman-block">
-                                    <img src="foto/Valdano Hizkia Aling, Ketua Umum_nobg.png" alt="Ketua Umum" class="w-40 h-50 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
+                                    <img src="converted/Valdano Hizkia Aling, Ketua Umum_nobg.webp" alt="Ketua Umum" class="w-40 h-50 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
                                     <p class="name mt-3">Valdano Hizkia Aling</p>
                                     <p class="title mt-1">Ketua Umum</p>
                                     </div>
                                 <div class="mobile-vertical">
                                     <div class="member-card">
-                                        <img src="foto/Bella Tania, Wakil Ketua Umum_nobg.png" alt="Wakil Ketua Umum" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Bella Tania, Wakil Ketua Umum_nobg.webp" alt="Wakil Ketua Umum" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Bella Tania</p>
                                         <p class="title mt-1">Wakil Ketua Umum</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Shellomitha Rorong, Sekretaris Umum_nobg.png" alt="Sekretaris Umum" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Shellomitha Rorong, Sekretaris Umum_nobg.webp" alt="Sekretaris Umum" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Shellomitha Rorong</p>
                                         <p class="title mt-1">Sekretaris Umum</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Amadea Mende, Bendahara Umum_nobg.png" alt="Bendahara Umum" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Amadea Mende, Bendahara Umum_nobg.webp" alt="Bendahara Umum" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Amadea Mende</p>
                                         <p class="title mt-1">Bendahara Umum</p>
                                     </div>
                                 </div>
-                                <div class="w-full max-w-2xl mt-4 px-2 min-h-28">
-                                    <h4 class="text-md font-semibold text-army-dark mb-2 text-center"></h4>
-                                    <p class="text-sm text-gray-600 text-center leading-relaxed commission-task-description">&nbsp;</p>
-                                </div>
+                                
                             </div>
                             <div class="commission-slide">
                                 <h3 class="text-xl font-bold text-army-dark mb-6 text-center uppercase tracking-wider commission-headline">
                                     KOMISI I - PENGAWASAN
                                 </h3>
                                 <div class="chairman-block">
-                                    <img src="foto/Livie Rondonuwu, Ketua Komisi I_nobg.png" alt="Ketua Komisi I" class="w-40 h-50 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
+                                    <img src="converted/Livie Rondonuwu, Ketua Komisi I_nobg.webp" alt="Ketua Komisi I" class="w-40 h-50 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
                                     <p class="name mt-3">Livie Rondonuwu</p>
                                     <p class="title mt-1">Ketua Komisi I</p>
                                     </div>
                                 <div class="mobile-vertical">
                                     <div class="member-card">
-                                         <img src="foto/Injilio Mondigir, anggota komisi I_nobg.png" alt="Anggota 1 Komisi I" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                         <img src="converted/Injilio Mondigir, anggota komisi I_nobg.webp" alt="Anggota 1 Komisi I" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Injilio Mondigir</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Tania Lampa, anggota komisi I_nobg.png" alt="Anggota 2 Komisi I" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Tania Lampa, anggota komisi I_nobg.webp" alt="Anggota 2 Komisi I" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Tania Lampa</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Mawar Tondatuon, Anggota komisi I_nobg.png" alt="Anggota 3 Komisi I" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Mawar Tondatuon, Anggota komisi I_nobg.webp" alt="Anggota 3 Komisi I" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Mawar Sharon Tondatuon</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
@@ -563,23 +577,23 @@
                                     KOMISI II - HUKUM
                                 </h3>
                                 <div class="chairman-block">
-                                     <img src="foto/Meilania Teko, Ketua Komisi II_nobg.png" alt="Ketua Komisi II" class="w-40 h-50 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
+                                     <img src="converted/Meilania Teko, Ketua Komisi II_nobg.webp" alt="Ketua Komisi II" class="w-40 h-50 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
                                     <p class="name mt-3">Melania Teko</p>
                                     <p class="title mt-1">Ketua Komisi II</p>
                                     </div>
                                 <div class="mobile-vertical">
                                     <div class="member-card">
-                                        <img src="foto/Rahel Kambey, Anggota Komisi II_nobg.png" alt="Anggota 1 Komisi II" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Rahel Kambey, Anggota Komisi II_nobg.webp" alt="Anggota 1 Komisi II" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Rahel Violentina Kambey</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Visca Tompira, Anggota komisi II_nobg.png" alt="Anggota 2 Komisi II" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Visca Tompira, Anggota komisi II_nobg.webp" alt="Anggota 2 Komisi II" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Visca Tompira</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Jeheskiel Sanger, Anggota komisi II_nobg.png" alt="Anggota 3 Komisi II" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Jeheskiel Sanger, Anggota komisi II_nobg.webp" alt="Anggota 3 Komisi II" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Jeheskiel Sanger</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
@@ -601,23 +615,23 @@
                                     KOMISI III - HUBUNGAN LEMBAGA &amp; ASPIRASI
                                 </h3>
                                  <div class="chairman-block">
-                                    <img src="foto/Yefta Mondigir, Ketua Komisi III_nobg.png" alt="Ketua Komisi III" class="w-40 h-50 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
+                                    <img src="converted/Yefta Mondigir, Ketua Komisi III_nobg.webp" alt="Ketua Komisi III" class="w-40 h-50 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
                                     <p class="name mt-3">Yefta Mondigir</p>
                                     <p class="title mt-1">Ketua Komisi III</p>
                                     </div>
                                 <div class="mobile-vertical">
                                     <div class="member-card">
-                                        <img src="foto/Frinenda Tumbel, Anggota Komisi III_nobg.png" alt="Anggota 1 Komisi III" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Frinenda Tumbel, Anggota Komisi III_nobg.webp" alt="Anggota 1 Komisi III" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Frinenda Tumbel</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/fachri.png" alt="Anggota 2 Komisi III" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy">
+                                        <img src="converted/fachri.webp" alt="Anggota 2 Komisi III" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy">
                                         <p class="name mt-2 leading-tight">Fachri Sumaila</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Triana Madil, Anggota Komisi III_nobg.png" alt="Anggota 3 Komisi III" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Triana Madil, Anggota Komisi III_nobg.webp" alt="Anggota 3 Komisi III" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Triana Madil</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
@@ -643,23 +657,23 @@
                                     KOMISI IV - PEMBINAAN &amp; SUKSESI
                                 </h3>
                                  <div class="chairman-block">
-                                    <img src="foto/Greyti Mait, Ketua Komisi IV_nobg.png" alt="Ketua Komisi IV" class="w-40 h-50 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
+                                    <img src="converted/Greyti Mait, Ketua Komisi IV_nobg.webp" alt="Ketua Komisi IV" class="w-40 h-50 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
                                     <p class="name mt-3">Greyti Mait</p>
                                     <p class="title mt-1">Ketua Komisi IV</p>
                                     </div>
                                 <div class="mobile-vertical">
                                     <div class="member-card">
-                                        <img src="foto/Daniella Boediman, Anggota komisi IV_nobg.png" alt="Anggota 1 Komisi IV" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Daniella Boediman, Anggota komisi IV_nobg.webp" alt="Anggota 1 Komisi IV" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Daniella Boediman</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Sepriadi Ambeang, Anggota Komisi IV_nobg.png" alt="Anggota 2 Komisi IV" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Sepriadi Ambeang, Anggota Komisi IV_nobg.webp" alt="Anggota 2 Komisi IV" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Sepriadi Ambeang</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Nayla Putri Alam, anggota komisi IV_nobg.png" alt="Anggota 3 Komisi IV" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Nayla Putri Alam, anggota komisi IV_nobg.webp" alt="Anggota 3 Komisi IV" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Nayla Putri Alam</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
@@ -682,23 +696,23 @@
                                     KOMISI V - PUBLIKASI &amp; MULTIMEDIA
                                 </h3>
                                  <div class="chairman-block">
-                                    <img src="foto/Marshanda Sugeha, Ketua Komisi V_nobg.png" alt="Ketua Komisi V" class="w-40 h-50 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
+                                    <img src="converted/Marshanda Sugeha, Ketua Komisi V_nobg.webp" alt="Ketua Komisi V" class="w-40 h-50 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
                                     <p class="name mt-3">Marshanda Sugeha</p>
                                     <p class="title mt-1">Ketua Komisi V</p>
                                      </div>
                                 <div class="mobile-vertical">
                                     <div class="member-card">
-                                        <img src="foto/Maghfira Hamid, anggota komisi V_nobg.png" alt="Anggota 1 Komisi V" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Maghfira Hamid, anggota komisi V_nobg.webp" alt="Anggota 1 Komisi V" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Maghfira Hamid</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Christi Gara, anggota komisi V_nobg.png" alt="Anggota 2 Komisi V" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Christi Gara, anggota komisi V_nobg.webp" alt="Anggota 2 Komisi V" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Christi Gara</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Olivia Mandei, anggota komisi V_nobg.png" alt="Anggota 3 Komisi V" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Olivia Mandei, anggota komisi V_nobg.webp" alt="Anggota 3 Komisi V" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Olivia Angelina Mandei</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
@@ -722,23 +736,23 @@
                                     KOMISI VI - KESEKRETARIATAN &amp; INVENTARIS
                                 </h3>
                                  <div class="chairman-block">
-                                    <img src="foto/Steffan Tabalujan, Ketua Komisi VI_nobg.png" alt="Ketua Komisi VI" class="w-40 h-50 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
+                                    <img src="converted/Steffan Tabalujan, Ketua Komisi VI_nobg.webp" alt="Ketua Komisi VI" class="w-40 h-50 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x200/BDC1BF/4B5320?text=Err';">
                                     <p class="name mt-3">Steffan Tabalujan</p>
                                     <p class="title mt-1">Ketua Komisi VI</p>
                                      </div>
                                 <div class="mobile-vertical">
                                     <div class="member-card">
-                                        <img src="foto/Juverdi Sigarlaki, Anggota Komisi VI_nobg.png" alt="Anggota 1 Komisi VI" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Juverdi Sigarlaki, Anggota Komisi VI_nobg.webp" alt="Anggota 1 Komisi VI" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Juverdi Sigarlaki</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Valensia Kailola, Anggota komisi VI_nobg.png" alt="Anggota 2 Komisi VI" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Valensia Kailola, Anggota komisi VI_nobg.webp" alt="Anggota 2 Komisi VI" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Valensia Kailola</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
                                     <div class="member-card">
-                                        <img src="foto/Gracia Ludjiwadu, Anggota komisi VI_nobg.png" alt="Anggota 3 Komisi VI" class="w-32 h-40 rounded-full object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
+                                        <img src="converted/Gracia Ludjiwadu, Anggota komisi VI_nobg.webp" alt="Anggota 3 Komisi VI" class="w-32 h-40 rounded-sm object-cover shadow-md" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/128x160/cccccc/FFFFFF?text=Err';">
                                         <p class="name mt-2 leading-tight">Gracia Ludjiwadu</p>
                                         <p class="title mt-1">Anggota</p>
                                     </div>
@@ -767,118 +781,144 @@
     </section>
 
 
-    <section id="functions" class="py-20 bg-white relative overflow-hidden">
-         <div class="absolute top-1/4 left-0 -ml-24 w-48 h-48 bg-silversand/10 rounded-full opacity-60 blur-xl z-0"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-3xl md:text-4xl font-display font-bold mb-4 inline-block">Fungsi Organisasi</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">BPM FKM UNSRAT memiliki berbagai fungsi strategis dalam menjalankan perannya sebagai lembaga legislatif mahasiswa.</p>
+    <section id="functions" data-aos="fade-up" class="py-20 bg-white relative overflow-hidden">
+        <div class="absolute top-1/4 left-0 -ml-24 w-48 h-48 bg-silversand/10 rounded-full opacity-60 blur-xl z-0 pointer-events-none"></div>
+        <div class="container mx-auto px-4 lg:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-silversand-light pb-8">
+                <div class="max-w-2xl">
+                    <div class="w-12 h-[2px] bg-army mb-6"></div>
+                    <h2 class="text-3xl md:text-5xl font-sans font-bold text-army-dark mb-4 tracking-tight">Fungsi Organisasi</h2>
+                    <p class="text-gray-600 font-light text-lg">BPM FKM UNSRAT memiliki berbagai fungsi strategis dalam menjalankan perannya sebagai lembaga legislatif mahasiswa.</p>
+                </div>
+                <div class="text-silversand hidden md:block">
+                    <i class="ph ph-intersect text-6xl"></i>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"> <div class="function-card p-6 text-center"> <div class="hexagon w-16 h-16 mb-4 inline-flex items-center justify-center"> <i class="fas fa-gavel text-2xl"></i> </div> <h3 class="text-xl font-bold text-army mb-2">Legislasi</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Membentuk peraturan &amp; kebijakan untuk ORMAWA FKM UNSRAT.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="group relative bg-white border border-gray-100 shadow-sm p-8 rounded-sm hover:shadow-[0_10px_30px_rgba(75,83,32,0.1)] transition-all duration-500 overflow-hidden cursor-default">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-army to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full group-hover:translate-x-0"></div>
+                    <div class="mb-8">
+                        <i class="ph ph-scales text-4xl text-army group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-army-dark mb-3 tracking-wide">Legislasi</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed transition-colors duration-300">
+                        Membentuk peraturan & kebijakan untuk ORMAWA FKM UNSRAT.
+                    </p>
+                    <div class="absolute bottom-0 right-0 p-4 opacity-10 text-6xl font-bold font-display group-hover:opacity-20 group-hover:text-army transition-all duration-300 text-silversand-dark">01</div>
                 </div>
-                 <div class="function-card p-6 text-center">
-                    <div class="hexagon w-16 h-16 mb-4 inline-flex items-center justify-center"> <i class="fas fa-eye text-2xl"></i> </div>
-                    <h3 class="text-xl font-bold text-army mb-2">Pengawasan</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Mengawasi kinerja BEM dan ORMAWA lainnya.</p>
+
+                <!-- Card 2 -->
+                <div class="group relative bg-white border border-gray-100 shadow-sm p-8 rounded-sm hover:shadow-[0_10px_30px_rgba(75,83,32,0.1)] transition-all duration-500 overflow-hidden cursor-default">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-army to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full group-hover:translate-x-0"></div>
+                    <div class="mb-8">
+                        <i class="ph ph-eye text-4xl text-army group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-army-dark mb-3 tracking-wide">Pengawasan</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed transition-colors duration-300">
+                        Mengawasi kinerja BEM dan ORMAWA lainnya.
+                    </p>
+                    <div class="absolute bottom-0 right-0 p-4 opacity-10 text-6xl font-bold font-display group-hover:opacity-20 group-hover:text-army transition-all duration-300 text-silversand-dark">02</div>
                 </div>
-                 <div class="function-card p-6 text-center">
-                    <div class="hexagon w-16 h-16 mb-4 inline-flex items-center justify-center"> <i class="fas fa-bullhorn text-2xl"></i> </div>
-                    <h3 class="text-xl font-bold text-army mb-2">Aspirasi</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Menyalurkan &amp; mengelola aspirasi mahasiswa FKM UNSRAT.</p>
+
+                <!-- Card 3 -->
+                <div class="group relative bg-white border border-gray-100 shadow-sm p-8 rounded-sm hover:shadow-[0_10px_30px_rgba(75,83,32,0.1)] transition-all duration-500 overflow-hidden cursor-default">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-army to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full group-hover:translate-x-0"></div>
+                    <div class="mb-8">
+                        <i class="ph ph-megaphone text-4xl text-army group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-army-dark mb-3 tracking-wide">Aspirasi</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed transition-colors duration-300">
+                        Menyalurkan & mengelola aspirasi mahasiswa FKM UNSRAT.
+                    </p>
+                    <div class="absolute bottom-0 right-0 p-4 opacity-10 text-6xl font-bold font-display group-hover:opacity-20 group-hover:text-army transition-all duration-300 text-silversand-dark">03</div>
                 </div>
-                 <div class="function-card p-6 text-center">
-                    <div class="hexagon w-16 h-16 mb-4 inline-flex items-center justify-center"> <i class="fas fa-coins text-2xl"></i> </div>
-                    <h3 class="text-xl font-bold text-army mb-2">Anggaran</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Memiliki hak budgeting terkait dana kemahasiswaan.</p>
+
+                <!-- Card 4 -->
+                <div class="group relative bg-white border border-gray-100 shadow-sm p-8 rounded-sm hover:shadow-[0_10px_30px_rgba(75,83,32,0.1)] transition-all duration-500 overflow-hidden cursor-default">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-army to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full group-hover:translate-x-0"></div>
+                    <div class="mb-8">
+                        <i class="ph ph-coins text-4xl text-army group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-army-dark mb-3 tracking-wide">Anggaran</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed transition-colors duration-300">
+                        Memiliki hak budgeting terkait dana kemahasiswaan.
+                    </p>
+                    <div class="absolute bottom-0 right-0 p-4 opacity-10 text-6xl font-bold font-display group-hover:opacity-20 group-hover:text-army transition-all duration-300 text-silversand-dark">04</div>
                 </div>
             </div>
-            </div>
+        </div>
     </section>
 
-    <section id="gallery" class="py-20 bg-silversand-light relative overflow-hidden">
-        <div class="container mx-auto px-4">
+    <section id="gallery" data-aos="fade-up" class="py-20 bg-silversand-light relative overflow-hidden">
+        <div class="container mx-auto px-4 lg:px-12">
             <div class="text-center mb-16">
                 <h2 class="section-title text-3xl md:text-4xl font-display font-bold mb-4 inline-block">Galeri Kegiatan</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Dokumentasi berbagai kegiatan dan acara yang diselenggarakan oleh BPM FKM UNSRAT.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto">Cuplikan dokumentasi berbagai kegiatan dan acara yang diselenggarakan oleh BPM FKM UNSRAT.</p>
             </div>
     
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <img src="foto/kegiatan1.png" alt="Foto Kegiatan Pelatihan Kepemimpinan 2025" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/4B5320/FFFFFF?text=Gagal+Muat:+kegiatan1.png';this.alt='Gambar placeholder untuk kegiatan1.png';" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
+            <div class="relative">
+                <!-- Gallery Grid Preview -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-h-[600px] overflow-hidden">
+                    <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                        <img src="converted/kegiatan1.webp" alt="Foto Kegiatan Pelatihan Kepemimpinan 2025" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/4B5320/FFFFFF?text=Gagal+Muat';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
+                            <h3 class="text-lg font-bold leading-tight truncate">Anniversary BPM 16th</h3>
+                        </div>
+                    </div>
+        
+                    <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                        <img src="converted/kegiatan2.webp" alt="Foto Kegiatan Seminar Inovasi Sosial" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/BDC1BF/3A4119?text=Gagal+Muat';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
+                            <h3 class="text-lg font-bold leading-tight truncate">Bina Temu Angkatan 2024</h3>
+                        </div>
+                    </div>
+        
+                    <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                        <img src="converted/kegiatan3.webp" alt="Foto Kegiatan Rapat Koordinasi Ormawa" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/3A4119/E0E2E1?text=Gagal+Muat';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
+                            <h3 class="text-lg font-bold leading-tight truncate">Forum Komunikasi Ormawa</h3>
+                        </div>
+                    </div>
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
-    
-                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
-                        <h3 class="text-lg font-bold leading-tight truncate">Anniversary BPM 16th</h3>
+                    <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                        <img src="converted/kegiatan4.webp" alt="Foto Kegiatan 4" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/5D6E1E/FFFFFF?text=Gagal+Muat';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
+                            <h3 class="text-lg font-bold leading-tight truncate">Pelantikan 6 Maret 2025</h3>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                        <img src="converted/kegiatan5.webp" alt="Foto Kegiatan 5" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/4B5320/FFFFFF?text=Gagal+Muat';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
+                            <h3 class="text-lg font-bold leading-tight truncate">Rapat Kerja</h3>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                        <img src="converted/kegiatan6.webp" alt="Foto Kegiatan 6" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/BDC1BF/3A4119?text=Gagal+Muat';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
+                            <h3 class="text-lg font-bold leading-tight truncate">Rapat Bulanan April</h3>
+                        </div>
                     </div>
                 </div>
-    
-                <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <img src="foto/kegiatan2.png" alt="Foto Kegiatan Seminar Inovasi Sosial" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/BDC1BF/3A4119?text=Gagal+Muat:+kegiatan2.png';this.alt='Gambar placeholder untuk kegiatan2.png';" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
-    
-                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
-                        <div class="mb-2">                        </div>
-                        <h3 class="text-lg font-bold leading-tight truncate">Bina Temu Angkatan 2024</h3>
-                    </div>
-                </div>
-    
-                <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <img src="foto/kegiatan3.png" alt="Foto Kegiatan Rapat Koordinasi Ormawa" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/3A4119/E0E2E1?text=Gagal+Muat:+kegiatan3.png';this.alt='Gambar placeholder untuk kegiatan3.png';" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
-    
-                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
-                        <div class="mb-2">                        </div>
-                        <h3 class="text-lg font-bold leading-tight truncate">Forum Komunikasi Ormawa BPM dan BEM</h3>
-                    </div>
-                </div>
-    
-                <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <img src="foto/kegiatan4.png" alt="Foto Kegiatan Penyaluran Aspirasi Mahasiswa" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/5D6E1E/FFFFFF?text=Gagal+Muat:+kegiatan4.png';this.alt='Gambar placeholder untuk kegiatan4.png';" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
-    
-                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
-                        <div class="mb-2">                        </div>
-                        <h3 class="text-lg font-bold leading-tight truncate">Pelantikan 6 Maret 2025</h3>
-                    </div>
-                </div>
-    
-                <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <img src="foto/kegiatan5.png" alt="Foto Kegiatan Sidang Pleno BPM" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/4B5320/FFFFFF?text=Gagal+Muat:+kegiatan5.png';this.alt='Gambar placeholder untuk kegiatan5.png';" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
-    
-                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
-                        <div class="mb-2">                        </div>
-                        <h3 class="text-lg font-bold leading-tight truncate">Rapat Kerja</h3>
-                    </div>
-                </div>
-    
-                <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <img src="foto/kegiatan6.jpeg" alt="Foto Kegiatan Kunjungan Studi Banding" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/BDC1BF/3A4119?text=Gagal+Muat:+kegiatan6.jpeg';this.alt='Gambar placeholder untuk kegiatan6.jpeg';" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
-    
-                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
-                        <div class="mb-2">                        </div>
-                        <h3 class="text-lg font-bold leading-tight truncate">Rapat bulanan Kamis 10 Apr 2025</h3>
-                    </div>
-                </div>
-    
-                <div class="gallery-item group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 lg:col-start-2">
-                    <img src="foto/kegiatan7.png" alt="Foto Kegiatan Bakti Sosial Mahasiswa" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x450/4B5320/FFFFFF?text=Gagal+Muat:+kegiatan7.png';this.alt='Gambar placeholder untuk kegiatan7.png';" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent opacity-80 lg:opacity-0 lg:group-hover:opacity-80 transition-opacity duration-300"></div>
-    
-                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white transition-all duration-300">
-                        <div class="mb-2">                        </div>
-                        <h3 class="text-lg font-bold leading-tight truncate">Rapat bulanan Kamis 13 maret 2025</h3>
-                    </div>
+
+                <!-- Fade Out Effect Overlay -->
+                <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-silversand-light to-transparent pointer-events-none"></div>
+                
+                <!-- See All Button -->
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center z-10">
+                    <a href="gallery.html" class="btn btn-army inline-flex items-center gap-2 group shadow-xl px-8 py-4 text-lg rounded-sm border border-army hover:bg-army-dark hover:-translate-y-1">
+                        <span>Lihat Semua Galeri</span>
+                        <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -887,22 +927,22 @@
 
     
 
-<section id="aspirasi" class="py-20 bg-silversand-light relative overflow-hidden">
+<section id="aspirasi" data-aos="fade-up" class="py-20 bg-silversand-light relative overflow-hidden">
     <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-army/5 rounded-full opacity-50 blur-2xl"></div>
     <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-48 h-48 bg-silversand/10 rounded-full opacity-60 blur-xl"></div>
 
-    <div class="container mx-auto px-4 relative z-10">
+    <div class="container mx-auto px-4 lg:px-12 relative z-10">
         <div class="text-center mb-16">
             <h2 class="section-title text-3xl md:text-4xl font-display font-bold mb-4 inline-block">Tinjauan Aspirasi Mahasiswa</h2>
             <p class="text-gray-600 max-w-2xl mx-auto">Aspirasi mahasiswa adalah prioritas kami. Berikut adalah rangkuman isu-isu utama yang telah kami kaji dan teruskan kepada pimpinan untuk realisasi tindak lanjut.</p>
         </div>
 
-        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden" id="aspirasi-accordion-container">
+        <div class="max-w-3xl mx-auto bg-white rounded-sm shadow-lg overflow-hidden" id="aspirasi-accordion-container">
             <div class="accordion-item">
                 <button class="accordion-header">
-                    <span class="header-icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                    <span class="header-icon"><i class="ph ph-chalkboard-teacher"></i></span>
                     <span class="header-title">Peningkatan Fasilitas Ruang Kelas</span>
-                    <span class="header-chevron"><i class="fas fa-chevron-down"></i></span>
+                    <span class="header-chevron"><i class="ph ph-caret-down"></i></span>
                 </button>
                 <div class="accordion-content">
                     <p>Banyak masukan mengenai fasilitas pendukung belajar yang kurang memadai. Isu utamanya adalah pendingin ruangan (AC) yang tidak berfungsi baik, serta kondisi jendela dan papan tulis di beberapa kelas yang sudah harus diganti atau diperbaiki.</p>
@@ -911,9 +951,9 @@
 
             <div class="accordion-item">
                 <button class="accordion-header">
-                    <span class="header-icon"><i class="fas fa-university"></i></span>
+                    <span class="header-icon"><i class="ph ph-bank"></i></span>
                     <span class="header-title">Optimalisasi Fasilitas Umum Kampus</span>
-                    <span class="header-chevron"><i class="fas fa-chevron-down"></i></span>
+                    <span class="header-chevron"><i class="ph ph-caret-down"></i></span>
                 </button>
                 <div class="accordion-content">
                     <p>Fasilitas umum menjadi sorotan utama. Keluhan mencakup kondisi toilet yang kotor dan seringkali tanpa air, terutama di Gedung EXPOLI dan Gedung K3. Selain itu, mahasiswa menyuarakan urgensi pengadaan CCTV di area rawan kehilangan, perbaikan jalan parkiran, dan penguatan sinyal WiFi untuk kelancaran presensi online.</p>
@@ -922,9 +962,9 @@
 
             <div class="accordion-item">
                 <button class="accordion-header">
-                    <span class="header-icon"><i class="fas fa-book-reader"></i></span>
+                    <span class="header-icon"><i class="ph ph-book-open-text"></i></span>
                     <span class="header-title">Evaluasi Sistem Pembelajaran & Minat</span>
-                    <span class="header-chevron"><i class="fas fa-chevron-down"></i></span>
+                    <span class="header-chevron"><i class="ph ph-caret-down"></i></span>
                 </button>
                 <div class="accordion-content">
                     <p>Mahasiswa berharap ada peninjauan kembali terkait dua hal. Pertama, perkuliahan yang rutin diadakan di luar kampus dirasa memberatkan tanpa adanya subsidi transportasi. Kedua, mahasiswa Angkatan 2023 sangat berharap proses penentuan bidang minat dilakukan berdasarkan pilihan mahasiswa, bukan lagi dengan metode undian (spin) yang acak. </p>
@@ -933,9 +973,9 @@
 
             <div class="accordion-item">
                 <button class="accordion-header">
-                    <span class="header-icon"><i class="fas fa-file-signature"></i></span>
+                    <span class="header-icon"><i class="ph ph-files"></i></span>
                     <span class="header-title">Penyederhanaan Proses Administrasi</span>
-                    <span class="header-chevron"><i class="fas fa-chevron-down"></i></span>
+                    <span class="header-chevron"><i class="ph ph-caret-down"></i></span>
                 </button>
                 <div class="accordion-content">
                     <p>Terdapat aspirasi untuk meningkatkan efisiensi dan pelayanan di bagian administrasi. Mahasiswa berharap proses birokrasi, seperti pengurusan surat keterangan aktif dan layanan lainnya, dapat dibuat lebih mudah dan tidak berpotensi menyulitkan mahasiswa.</p>
@@ -951,10 +991,10 @@
     
     
 
-    <section id="contact" class="py-20 bg-white relative overflow-hidden">
+    <section id="contact" data-aos="fade-up" class="py-20 bg-white relative overflow-hidden">
         <div class="absolute bottom-0 right-0 -mb-20 -mr-20 w-72 h-72 bg-army/5 rounded-full opacity-50 blur-2xl z-0"></div>
 
-        <div class="container mx-auto px-4 relative z-10">
+        <div class="container mx-auto px-4 lg:px-12 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="section-title text-3xl md:text-4xl font-display font-bold mb-4 inline-block">Hubungi Kami</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Temukan lokasi kami atau kirimkan pesan melalui email.</p> </div>
@@ -962,14 +1002,14 @@
             <div id="contact-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"> <div id="contact-info" class="md:text-left text-center">
                     <h3 class="text-2xl font-semibold text-army-dark mb-6">Informasi Kontak</h3>
                     <div class="space-y-5"> <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
-                            <i class="fas fa-map-marker-alt text-army text-3xl flex-shrink-0"></i>
+                            <i class="ph ph-map-pin text-army text-3xl flex-shrink-0"></i>
                             <p class="text-gray-700 leading-relaxed">
                                 Kampus FKM UNSRAT, Jl. Kampus Unsrat, Bahu,<br class="hidden sm:block">
                                 Kec. Malalayang, Kota Manado, Sulawesi Utara
                             </p>
                         </div>
                         <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
-                            <i class="fas fa-envelope text-army text-3xl flex-shrink-0"></i>
+                            <i class="ph ph-envelope text-army text-3xl flex-shrink-0"></i>
                             <a href="mailto:bpmfkm@unsrat.ac.id" class="text-gray-700 hover:text-army-dark transition-colors break-all"> bpmfkm@unsrat.ac.id
                             </a>
                         </div>
@@ -977,15 +1017,15 @@
 
                     <div class="mt-8 pt-6 border-t border-silversand-dark/50">
                          <div class="flex justify-center md:justify-start space-x-5">
-                            <a href="#" aria-label="Facebook" class="text-army hover:text-army-dark transition-colors"><i class="fab fa-facebook-f text-2xl"></i></a>
-                            <a href="#" aria-label="Twitter" class="text-army hover:text-army-dark transition-colors"><i class="fab fa-twitter text-2xl"></i></a>
-                            <a href="#" aria-label="Instagram" class="text-army hover:text-army-dark transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
-                            <a href="#" aria-label="LinkedIn" class="text-army hover:text-army-dark transition-colors"><i class="fab fa-linkedin-in text-2xl"></i></a>
+                            <a href="#" aria-label="Facebook" class="text-army hover:text-army-dark transition-colors"><i class="ph ph-facebook-logo text-2xl"></i></a>
+                            <a href="#" aria-label="Twitter" class="text-army hover:text-army-dark transition-colors"><i class="ph ph-twitter-logo text-2xl"></i></a>
+                            <a href="#" aria-label="Instagram" class="text-army hover:text-army-dark transition-colors"><i class="ph ph-instagram-logo text-2xl"></i></a>
+                            <a href="#" aria-label="LinkedIn" class="text-army hover:text-army-dark transition-colors"><i class="ph ph-linkedin-logo text-2xl"></i></a>
                          </div>
                     </div>
                 </div>
 
-                <div id="contact-map" class="w-full h-80 md:h-96 lg:h-full rounded-lg shadow-lg overflow-hidden border-2 border-silversand-dark">
+                <div id="contact-map" class="w-full h-80 md:h-96 lg:h-full rounded-sm shadow-lg overflow-hidden border-2 border-silversand-dark">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.526311929919!2d124.83083931529916!3d1.4542147615374868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x328774fd405d7f3b%3A0x4a8c9af3a6b1ab8e!2sFakultas%20Kesehatan%20Masyarakat%20Unsrat!5e0!3m2!1sen!2sid!4v1678886543210!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta Lokasi FKM UNSRAT">
                     </iframe>
                 </div>
@@ -995,7 +1035,7 @@
     </section>
 
     <footer class="bg-army-dark text-silversand-light py-12">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 lg:px-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
                      <div class="flex items-center mb-4">
@@ -1012,17 +1052,17 @@
                         <li><a href="#about" class="text-gray-300/90 hover:text-white transition-colors text-sm">Tentang</a></li>
                         <li><a href="#structure" class="text-gray-300/90 hover:text-white transition-colors text-sm">Struktur</a></li>
                         <li><a href="#functions" class="text-gray-300/90 hover:text-white transition-colors text-sm">Fungsi</a></li>
-                        <li><a href="#gallery" class="text-gray-300/90 hover:text-white transition-colors text-sm">Galeri</a></li>
+                        <li><a href="gallery.html" class="text-gray-300/90 hover:text-white transition-colors text-sm">Galeri</a></li>
                         <li><a href="#contact" class="text-gray-300/90 hover:text-white transition-colors text-sm">Kontak</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-4">Ikuti Kami</h3>
                     <div class="flex space-x-4">
-                        <a href="#" aria-label="Facebook" class="text-gray-300/90 hover:text-white transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
-                        <a href="#" aria-label="Twitter" class="text-gray-300/90 hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
-                        <a href="#" aria-label="Instagram" class="text-gray-300/90 hover:text-white transition-colors"><i class="fab fa-instagram text-xl"></i></a>
-                        <a href="#" aria-label="LinkedIn" class="text-gray-300/90 hover:text-white transition-colors"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="#" aria-label="Facebook" class="text-gray-300/90 hover:text-white transition-colors"><i class="ph ph-facebook-logo text-xl"></i></a>
+                        <a href="#" aria-label="Twitter" class="text-gray-300/90 hover:text-white transition-colors"><i class="ph ph-twitter-logo text-xl"></i></a>
+                        <a href="#" aria-label="Instagram" class="text-gray-300/90 hover:text-white transition-colors"><i class="ph ph-instagram-logo text-xl"></i></a>
+                        <a href="#" aria-label="LinkedIn" class="text-gray-300/90 hover:text-white transition-colors"><i class="ph ph-linkedin-logo text-xl"></i></a>
                     </div>
                     <p class="text-sm text-gray-300/80 mt-4">Dapatkan info terbaru dari kami.</p>
                 </div>
@@ -1035,13 +1075,13 @@
 
     <div class="modal" id="galleryModal">
         <span class="modal-close" id="closeModal">×</span>
-        <img class="modal-content rounded-lg" id="modalImage" alt="Gambar Galeri Diperbesar">
+        <img class="modal-content rounded-sm" id="modalImage" alt="Gambar Galeri Diperbesar">
     </div>
 
 
 
 <div id="pernyataanModal" class="fixed inset-0 bg-black bg-opacity-60 z-[9999] flex justify-center items-center p-4 transition-opacity duration-300 ease-in-out opacity-0 hidden">
-    <div id="pernyataanModalContent" class="bg-white w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl overflow-hidden flex flex-col transform scale-95 transition-all duration-300 ease-in-out">
+    <div id="pernyataanModalContent" class="bg-white w-full max-w-4xl max-h-[90vh] rounded-sm shadow-2xl overflow-hidden flex flex-col transform scale-95 transition-all duration-300 ease-in-out">
         <div class="flex justify-between items-center p-4 sm:p-5 border-b border-gray-200 flex-shrink-0">
             <h2 class="text-lg sm:text-xl font-display font-bold text-army-dark">Pernyataan Sikap Resmi</h2>
             <button id="closePernyataanModal" class="text-gray-400 hover:text-army-dark text-2xl sm:text-3xl transition-colors">&times;</button>
@@ -1055,21 +1095,21 @@
                 Kami, Badan Perwakilan Mahasiswa (BPM) Fakultas Kesehatan Masyarakat Universitas Sam Ratulangi, menyatakan sikap resmi dan keprihatinan mendalam atas kasus dugaan pelecehan seksual yang dialami oleh salah satu mahasiswa FKM Unsrat saat melaksanakan Praktik Belajar Lapangan (PBL) di Desa Durian, Kecamatan Sinonsayang, pada 16 Juli 2025. Peristiwa ini merupakan pelanggaran berat terhadap martabat dan keamanan korban, serta menjadi tamparan keras bagi dunia pendidikan yang seharusnya menjadi ruang aman.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="p-5 bg-silversand-light/50 rounded-lg">
-                    <h4 class="text-lg font-semibold text-army-dark mb-4 flex items-center"><i class="fas fa-bullhorn mr-3"></i>Sikap Resmi & Seruan Moral</h4>
+                <div class="p-5 bg-silversand-light/50 rounded-sm">
+                    <h4 class="text-lg font-semibold text-army-dark mb-4 flex items-center"><i class="ph ph-megaphone mr-3"></i>Sikap Resmi & Seruan Moral</h4>
                     <ul class="space-y-3 list-none text-gray-700 text-sm">
-                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mendesak aparat penegak hukum memproses kasus secara adil dan transparan.</span></li>
-                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mengecam segala bentuk kekerasan seksual dan menolak upaya pembungkaman terhadap korban.</span></li>
-                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mendorong Rektorat & Fakultas memberikan pendampingan hukum, psikologis, dan akademik.</span></li>
-                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Menuntut evaluasi menyeluruh terhadap skema PBL demi menjamin keselamatan mahasiswa.</span></li>
+                        <li class="flex items-start"><i class="ph ph-caret-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mendesak aparat penegak hukum memproses kasus secara adil dan transparan.</span></li>
+                        <li class="flex items-start"><i class="ph ph-caret-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mengecam segala bentuk kekerasan seksual dan menolak upaya pembungkaman terhadap korban.</span></li>
+                        <li class="flex items-start"><i class="ph ph-caret-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Mendorong Rektorat & Fakultas memberikan pendampingan hukum, psikologis, dan akademik.</span></li>
+                        <li class="flex items-start"><i class="ph ph-caret-right text-army mt-1 mr-2 flex-shrink-0"></i><span>Menuntut evaluasi menyeluruh terhadap skema PBL demi menjamin keselamatan mahasiswa.</span></li>
                     </ul>
                 </div>
-                <div class="p-5 bg-silversand-light/50 rounded-lg">
-                    <h4 class="text-lg font-semibold text-army-dark mb-4 flex items-center"><i class="fas fa-hands-helping mr-3"></i>Tindakan Nyata BPM FKM Unsrat</h4>
+                <div class="p-5 bg-silversand-light/50 rounded-sm">
+                    <h4 class="text-lg font-semibold text-army-dark mb-4 flex items-center"><i class="ph ph-handshake mr-3"></i>Tindakan Nyata BPM FKM Unsrat</h4>
                     <ul class="space-y-3 list-none text-gray-700 text-sm">
-                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Mengawal Proses Hukum:</b> Sejak 24 Juli 2025, BPM aktif mendampingi proses hukum bersama pimpinan fakultas.</span></li>
-                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Membuka Ruang Aspirasi:</b> Melaksanakan audiensi langsung dengan korban dan membuka kanal komunikasi aman.</span></li>
-                        <li class="flex items-start"><i class="fas fa-angle-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Pendampingan Satgas PPKS:</b> Menjadwalkan pendampingan resmi dengan Satgas PPKS Unsrat pada 19 Agustus 2025.</span></li>
+                        <li class="flex items-start"><i class="ph ph-caret-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Mengawal Proses Hukum:</b> Sejak 24 Juli 2025, BPM aktif mendampingi proses hukum bersama pimpinan fakultas.</span></li>
+                        <li class="flex items-start"><i class="ph ph-caret-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Membuka Ruang Aspirasi:</b> Melaksanakan audiensi langsung dengan korban dan membuka kanal komunikasi aman.</span></li>
+                        <li class="flex items-start"><i class="ph ph-caret-right text-army mt-1 mr-2 flex-shrink-0"></i><span><b>Pendampingan Satgas PPKS:</b> Menjadwalkan pendampingan resmi dengan Satgas PPKS Unsrat pada 19 Agustus 2025.</span></li>
                     </ul>
                 </div>
             </div>
@@ -1216,6 +1256,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Function to go to a specific slide index
+        
+        function updateSliderHeight() {
+            if (commissionSliderWrapper && commissionSlides.length > 0) {
+                const activeSlide = commissionSlides[currentCommissionIndex];
+                if (activeSlide) {
+                    commissionSliderWrapper.style.height = activeSlide.offsetHeight + 'px';
+                }
+            }
+        }
+    
         function goToSlide(index) {
             if (!commissionSlider || commissionSlides.length === 0) return;
 
@@ -1244,6 +1294,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update dots immediately for visual feedback on desktop/dot click
             // On mobile swipe, the scroll listener will handle the final update.
              if (isDesktop) { updateDots(); }
+            updateSliderHeight();
         }
 
         // --- NEW: Scroll event listener for mobile slider to update dots ---
@@ -1261,6 +1312,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (newIndex !== currentCommissionIndex && newIndex >= 0 && newIndex < commissionSlides.length) {
                     currentCommissionIndex = newIndex;
                     updateDots();
+                    updateSliderHeight();
                 }
             }, 150); // Adjust debounce delay as needed (e.g., 100-200ms)
         }
@@ -1332,6 +1384,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             // Always update dots after resize adjustments
             updateDots();
+            updateSliderHeight();
         }
 
         // --- MODIFIED: Initialize Slider ---
@@ -1345,6 +1398,7 @@ document.addEventListener('DOMContentLoaded', function () {
             isDesktop = window.innerWidth >= 641;
             calculateSlideWidth();
             setupDots(); // Setup dots regardless of mode
+            setTimeout(updateSliderHeight, 100); // Set initial height
 
             if (isDesktop) {
                 // Initial Desktop Setup
@@ -1493,4 +1547,14 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
     
 
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+        });
+    </script>
 </body></html>
