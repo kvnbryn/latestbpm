@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri - BPM FKM UNSRAT</title>
+
+    <!-- Untuk development/preview boleh pakai CDN.
+         Untuk production final, sebaiknya build Tailwind pakai CLI/PostCSS. -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -25,35 +31,124 @@
                         }
                     },
                     fontFamily: {
-                        'sans': ['Montserrat', 'sans-serif'],
-                        'display': ['Orbitron', 'sans-serif']
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif']
                     }
                 }
             }
         }
     </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #f8f9fa; color: #343a40; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
 
         /* Navbar Styling */
-        .nav-link { position: relative; transition: all 0.3s ease; color: #4A5568; }
-        .nav-link:hover { color: #3A4119; }
-        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background-color: #4B5320; transition: width 0.3s ease; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link.active { color: #3A4119; font-weight: 600; }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            color: #4A5568;
+        }
+
+        .nav-link:hover {
+            color: #3A4119;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4B5320;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #3A4119;
+            font-weight: 600;
+        }
 
         /* Modal Galeri */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
-        .modal.show { opacity: 1; display: flex; }
-        .modal-content { max-width: 90%; max-height: 90vh; object-fit: contain; transform: scale(0.9); transition: transform 0.3s ease; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .modal.show .modal-content { transform: scale(1); }
-        .modal-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.5); transition: color 0.3s ease; }
-        .modal-close:hover { color: #BDC1BF; }
-        .modal-caption { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: white; font-size: 1.2rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #BDC1BF;
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
     </style>
 </head>
+
 <body class="bg-silversand-light pt-20">
 
     <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 transition-all duration-300 shadow-md" id="navbar">
@@ -79,6 +174,7 @@
                 </button>
             </div>
         </div>
+
         <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 absolute w-full shadow-lg border-t border-gray-200">
             <a href="index.html" class="block py-2 text-gray-700 hover:text-army font-medium">Beranda</a>
             <a href="gallery.html" class="block py-2 text-army font-semibold">Galeri</a>
@@ -87,15 +183,17 @@
 
     <header class="bg-gradient-to-r from-army-dark to-army text-white py-16 text-center relative overflow-hidden" data-aos="fade-down">
         <div class="absolute inset-0 bg-[url('converted/1.webp')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+
         <div class="container mx-auto px-4 lg:px-12 relative z-10">
             <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Galeri BPM FKM UNSRAT</h1>
-            <p class="text-lg md:text-xl text-silversand-light max-w-2xl mx-auto">Momen-momen berharga dan dokumentasi kegiatan organisasi kami.</p>
+            <p class="text-lg md:text-xl text-silversand-light max-w-2xl mx-auto">
+                Momen-momen berharga dan dokumentasi kegiatan organisasi kami.
+            </p>
         </div>
     </header>
 
     <section class="py-16">
         <div class="container mx-auto px-4 lg:px-12">
-            <!-- Filter/Categories (Optional future enhancement) -->
             <div class="mb-10 text-center" data-aos="fade-up">
                 <p class="text-gray-600 italic">Menampilkan seluruh dokumentasi terbaru</p>
             </div>
@@ -121,86 +219,139 @@
 
     <!-- AOS Animation Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
         AOS.init({
             duration: 800,
             once: true,
-            offset: 100,
+            offset: 100
         });
 
         // Mobile Menu
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
 
         // Set Year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        const currentYear = document.getElementById('current-year');
 
-        // Gallery Data (from converted folder)
+        if (currentYear) {
+            currentYear.textContent = new Date().getFullYear();
+        }
+
+        // Gallery Data
         const galleryImages = [
             { src: 'converted/17 Agustus 2025_IMG-20250817-WA0009.webp', title: '17 Agustus 2025' },
             { src: 'converted/Anniversary BPM 16th_IMG-20250417-WA0105.webp', title: 'Anniversary BPM 16th' },
-            { src: 'converted/BAKTI SOSIAL PANTI SAYAP KASIH_IMG-20251128-WA0205.webp', title: 'Bakti Sosial Panti Sayap Kasih' },
+            { src: 'converted/BAKTI SOSIAL PANTI SAYAP KASIH_IMG-20251128-WA0205.webp', title: 'BAKTI SOSIAL PANTI SAYAP KASIH' },
             { src: 'converted/Bina Temu Angkatan 2024_IMG_2931.webp', title: 'Bina Temu Angkatan 2024' },
-            { src: 'converted/BPM ON DUTY_IMG-20251003-WA0074.webp', title: 'BPM On Duty' },
+            { src: 'converted/BPM ON DUTY_IMG-20251003-WA0074.webp', title: 'BPM ON DUTY' },
             { src: 'converted/Dies Natalis Unsrat 2025_IMG-20251205-WA0025.webp', title: 'Dies Natalis Unsrat 2025' },
-            { src: 'converted/Forum Komunikasi Ormawa 10 Feb 2026_IMG-20260210-WA0041.webp', title: 'Forum Komunikasi Ormawa' },
-            { src: 'converted/Forum Komunikasi Ormawa BPM dan BEM_IMG-20250325-WA0060.webp', title: 'Forum Komunikasi Ormawa BPM & BEM' },
+            { src: 'converted/Forum Komunikasi Ormawa 10 Feb 2026_IMG-20260210-WA0041.webp', title: 'Forum Komunikasi Ormawa 10 Feb 2026' },
+            { src: 'converted/Forum Komunikasi Ormawa BPM dan BEM_IMG-20250325-WA0060.webp', title: 'Forum Komunikasi Ormawa BPM dan BEM' },
             { src: 'converted/Hari Pendidikan Nasional_IMG-20250502-WA0050.webp', title: 'Hari Pendidikan Nasional' },
             { src: 'converted/Ibadah Pra Natal_IMG-20251212-WA0124.webp', title: 'Ibadah Pra Natal' },
             { src: 'converted/MPM Goes To Fakultas_IMG-20260210-WA0057.webp', title: 'MPM Goes To Fakultas' },
             { src: 'converted/NNU 2025_IMG-20251213-WA0036.webp', title: 'NNU 2025' },
             { src: 'converted/Pelantikan 6 Maret 2025_IMG_9957.webp', title: 'Pelantikan 6 Maret 2025' },
             { src: 'converted/Pelantikan KPUM_IMG-20260305-WA0026.webp', title: 'Pelantikan KPUM' },
-            { src: 'converted/Pembahasan Proker Kerja Umum BPM_IMG-20251113-WA0064.webp', title: 'Pembahasan Proker' },
-            { src: 'converted/Penyerahan Aspirasi Mahasiswa ke WD3_IMG-20250602-WA0033.webp', title: 'Penyerahan Aspirasi ke WD3' },
-            { src: 'converted/PKKMB ANGKATAN 2025_IMG-20250815-WA0066.webp', title: 'PKKMB Angkatan 2025' },
-            { src: 'converted/PROKER VIDEO STRUKTUR_IMG-20250911-WA0091.webp', title: 'Proker Video Struktur' },
-            { src: 'converted/Raker_IMG_2255.webp', title: 'Rapat Kerja' },
-            { src: 'converted/Rapat bulanan Kamis 10 Apr 2025_IMG-20250410-WA0060.webp', title: 'Rapat Bulanan April' },
-            { src: 'converted/Rapat Bulanan Kamis 5 Februari 2026_IMG-20260205-WA0091.webp', title: 'Rapat Bulanan Februari' },
-            { src: 'converted/Rapat Bulanan Kamis 5 Juni 2025_IMG-20250605-WA0126.webp', title: 'Rapat Bulanan Juni' },
-            { src: 'converted/Rapat Bulanan Kamis 9 Oktober 2025_IMG-20251009-WA0105.webp', title: 'Rapat Bulanan Oktober' },
+            { src: 'converted/Pembahasan Proker Kerja Umum BPM_IMG-20251113-WA0064.webp', title: 'Pembahasan Proker Kerja Umum BPM' },
+            { src: 'converted/Penyerahan Aspirasi Mahasiswa ke WD3_IMG-20250602-WA0033.webp', title: 'Penyerahan Aspirasi Mahasiswa ke WD3' },
+            { src: 'converted/PKKMB ANGKATAN 2025_IMG-20250815-WA0066.webp', title: 'PKKMB ANGKATAN 2025' },
+            { src: 'converted/PROKER VIDEO STRUKTUR_IMG-20250911-WA0091.webp', title: 'PROKER VIDEO STRUKTUR' },
+            { src: 'converted/Raker_IMG_2255.webp', title: 'Raker' },
+            { src: 'converted/Rapat bulanan Kamis 10 Apr 2025_IMG-20250410-WA0060.webp', title: 'Rapat bulanan Kamis 10 Apr 2025' },
+            { src: 'converted/Rapat Bulanan Kamis 5 Februari 2026_IMG-20260205-WA0091.webp', title: 'Rapat Bulanan Kamis 5 Februari 2026' },
+            { src: 'converted/Rapat Bulanan Kamis 5 Juni 2025_IMG-20250605-WA0126.webp', title: 'Rapat Bulanan Kamis 5 Juni 2025' },
+            { src: 'converted/Rapat Bulanan Kamis 9 Oktober 2025_IMG-20251009-WA0105.webp', title: 'Rapat Bulanan Kamis 9 Oktober 2025' },
             { src: 'converted/Rapat Perdana KPUM_IMG-20260317-WA0036.webp', title: 'Rapat Perdana KPUM' },
             { src: 'converted/Sidang Istimewa_IMG-20260305-WA0097.webp', title: 'Sidang Istimewa' },
             { src: 'converted/Ultah Dekan_IMG-20250327-WA0091.webp', title: 'Ultah Dekan' },
             { src: 'converted/Ultah Dr Ribka_IMG-20250707-WA0026.webp', title: 'Ultah Dr Ribka' },
-            { src: 'converted/kegiatan1.webp', title: 'Pelatihan Kepemimpinan' },
-            { src: 'converted/kegiatan2.webp', title: 'Seminar Inovasi Sosial' },
-            { src: 'converted/kegiatan3.webp', title: 'Rapat Koordinasi' }
+            { src: 'converted/kegiatan1.webp', title: 'Anniversary BPM 16th' },
+            { src: 'converted/kegiatan2.webp', title: 'Bina Temu Angkatan 2024' },
+            { src: 'converted/kegiatan3.webp', title: 'Forum Komunikasi Ormawa BPM dan BEM' },
+            { src: 'converted/kegiatan4.webp', title: 'Pelantikan 6 Maret 2025' },
+            { src: 'converted/kegiatan5.webp', title: 'Rapat Kerja' },
+            { src: 'converted/kegiatan6.webp', title: 'Rapat bulanan Kamis 10 Apr 2025' },
+            { src: 'converted/kegiatan7.webp', title: 'Rapat bulanan Kamis 13 maret 2025' }
         ];
 
         const galleryGrid = document.getElementById('galleryGrid');
-        
-        galleryImages.forEach((imgData, index) => {
-            const delay = (index % 4) * 100;
-            const itemHtml = `
-                <div class="break-inside-avoid group relative rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer bg-silversand-light/40 min-h-[250px]" data-aos="zoom-in" data-aos-delay="${delay}">
-                    
-                    <!-- Pulsing Skeleton Background -->
-                    <div class="absolute inset-0 animate-pulse bg-gray-300 z-0 skeleton-bg"></div>
-                    
-                    <!-- Image with onload handler for smooth reveal -->
-                    <img src="${imgData.src}" alt="${imgData.title}" loading="lazy" 
-                         class="relative z-10 w-full h-auto object-cover transform transition-all duration-700 group-hover:scale-105 opacity-0"
-                         onload="
-                            this.classList.remove('opacity-0'); 
-                            this.classList.add('opacity-100'); 
-                            this.previousElementSibling.classList.add('hidden'); 
-                            this.nextElementSibling.classList.remove('opacity-0');
-                         ">
-                    
-                    <!-- Permanent Overlay (Hidden until image loads) -->
-                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1a1c14]/95 via-[#1a1c14]/60 to-transparent pt-24 pb-5 px-5 opacity-0 transition-opacity duration-700 z-20">
-                        <h3 class="text-white font-bold text-lg md:text-xl leading-tight group-hover:text-army-light transition-colors duration-300 drop-shadow-md">${imgData.title}</h3>
-                        <div class="w-8 h-[2px] bg-army mt-3 transform origin-left transition-all duration-500 group-hover:w-full opacity-80"></div>
+
+        function revealImage(img) {
+            img.classList.remove('opacity-0');
+            img.classList.add('opacity-100');
+
+            const skeleton = img.previousElementSibling;
+            const overlay = img.nextElementSibling;
+
+            if (skeleton) skeleton.classList.add('hidden');
+            if (overlay) overlay.classList.remove('opacity-0');
+        }
+
+        if (galleryGrid) {
+            galleryImages.forEach((imgData, index) => {
+                const delay = (index % 4) * 100;
+
+                const itemHtml = `
+                    <div class="break-inside-avoid group relative rounded-sm overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer bg-silversand-light/40 min-h-[250px]" data-aos="zoom-in" data-aos-delay="${delay}">
+
+                        <!-- Pulsing Skeleton Background -->
+                        <div class="absolute inset-0 animate-pulse bg-gray-300 z-0 skeleton-bg"></div>
+
+                        <!-- Image -->
+                        <img
+                            src="${imgData.src}"
+                            alt="${imgData.title}"
+                            loading="lazy"
+                            class="relative z-10 w-full h-auto object-cover transform transition-all duration-700 group-hover:scale-105 opacity-0"
+                        >
+
+                        <!-- Permanent Overlay -->
+                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1a1c14]/95 via-[#1a1c14]/60 to-transparent pt-24 pb-5 px-5 opacity-0 transition-opacity duration-700 z-20">
+                            <h3 class="text-white font-bold text-lg md:text-xl leading-tight group-hover:text-army-light transition-colors duration-300 drop-shadow-md">${imgData.title}</h3>
+                            <div class="w-8 h-[2px] bg-army mt-3 transform origin-left transition-all duration-500 group-hover:w-full opacity-80"></div>
+                        </div>
                     </div>
-                </div>
-            `;
-            galleryGrid.innerHTML += itemHtml;
-        });
+                `;
+
+                galleryGrid.insertAdjacentHTML('beforeend', itemHtml);
+            });
+
+            // Reveal images after they load
+            document.querySelectorAll('#galleryGrid img').forEach((img) => {
+                img.addEventListener('load', () => {
+                    revealImage(img);
+                });
+
+                img.addEventListener('error', () => {
+                    const skeleton = img.previousElementSibling;
+                    if (skeleton) {
+                        skeleton.classList.remove('animate-pulse');
+                        skeleton.innerHTML = `
+                            <div class="flex items-center justify-center h-full text-center text-gray-600 p-4">
+                                Gambar gagal dimuat
+                            </div>
+                        `;
+                    }
+                });
+            });
+
+            // Trigger reveal for images that are already cached
+            setTimeout(() => {
+                document.querySelectorAll('#galleryGrid img').forEach((img) => {
+                    if (img.complete && img.naturalWidth > 0 && img.classList.contains('opacity-0')) {
+                        revealImage(img);
+                    }
+                });
+            }, 100);
+        }
 
         // Modal Logic
         const modal = document.getElementById('galleryModal');
@@ -208,32 +359,48 @@
         const modalCaption = document.getElementById('modalCaption');
         const closeBtn = document.getElementById('closeModal');
 
-        // Event delegation for dynamically added images
-        galleryGrid.addEventListener('click', function(e) {
-            const item = e.target.closest('.break-inside-avoid');
-            if (item) {
-                const img = item.querySelector('img');
-                const title = item.querySelector('h3').textContent;
-                modalImg.src = img.src;
-                modalCaption.textContent = title;
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-        });
+        if (galleryGrid && modal && modalImg && modalCaption) {
+            galleryGrid.addEventListener('click', function (e) {
+                const item = e.target.closest('.break-inside-avoid');
 
-        function closeModalFunc() {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                document.body.style.overflow = '';
-            }, 300); // wait for fade out
+                if (item) {
+                    const img = item.querySelector('img');
+                    const title = item.querySelector('h3')?.textContent || '';
+
+                    if (!img) return;
+
+                    modalImg.src = img.src;
+                    modalCaption.textContent = title;
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
         }
 
-        closeBtn.addEventListener('click', closeModalFunc);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModalFunc();
-        });
+        function closeModalFunc() {
+            if (!modal) return;
+
+            modal.classList.remove('show');
+
+            setTimeout(() => {
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModalFunc);
+        }
+
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModalFunc();
+            });
+        }
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && modal.classList.contains('show')) closeModalFunc();
+            if (e.key === 'Escape' && modal && modal.classList.contains('show')) {
+                closeModalFunc();
+            }
         });
     </script>
 </body>
